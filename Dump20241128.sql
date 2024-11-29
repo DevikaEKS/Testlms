@@ -65,13 +65,14 @@ CREATE TABLE `auth` (
   `user_id` int DEFAULT NULL,
   `has_paid` tinyint(1) DEFAULT '0',
   `company_id` int DEFAULT NULL,
+  `certificate_id` int DEFAULT NULL,
   PRIMARY KEY (`auth_id`),
   UNIQUE KEY `email` (`email`),
   KEY `fk_auth_role` (`role_id`),
   KEY `fk_auth_user` (`user_id`),
   CONSTRAINT `fk_auth_role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`),
   CONSTRAINT `fk_auth_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,7 +81,7 @@ CREATE TABLE `auth` (
 
 LOCK TABLES `auth` WRITE;
 /*!40000 ALTER TABLE `auth` DISABLE KEYS */;
-INSERT INTO `auth` VALUES (23,'siva.v@kgisl.microcollege.in','$2b$10$GZQxG3Lxs13Yo0ICdEPVSejtw3oiWawSrSl5RpZKFWH/2KDjbFdii',4,'2024-11-19 10:15:01',29,0,NULL);
+INSERT INTO `auth` VALUES (23,'siva.v@kgisl.microcollege.in','$2b$10$GZQxG3Lxs13Yo0ICdEPVSejtw3oiWawSrSl5RpZKFWH/2KDjbFdii',4,'2024-11-19 10:15:01',29,0,NULL,2),(24,'devika.eks@kggeniuslabs.com','$2b$10$znQ9OTlNEDwtOoBAhTxtjOCat..q8bf8HEFCELOXLtLhr9Pqrd4Q6',4,'2024-11-27 04:16:07',30,0,NULL,1),(26,'johnpaul.j@kggeniuslabs.com','$2b$10$7Gd94UM8p2q7.YpBZblayuMQeMa4NH3DOA0LT1fA23xdp56936s3K',4,'2024-11-27 07:18:47',32,0,NULL,2);
 /*!40000 ALTER TABLE `auth` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,7 +171,7 @@ CREATE TABLE `context` (
   PRIMARY KEY (`context_id`),
   KEY `fk_contextlevel` (`contextlevel`),
   CONSTRAINT `fk_contextlevel` FOREIGN KEY (`contextlevel`) REFERENCES `context_level_description` (`contextlevel`)
-) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,7 +180,7 @@ CREATE TABLE `context` (
 
 LOCK TABLES `context` WRITE;
 /*!40000 ALTER TABLE `context` DISABLE KEYS */;
-INSERT INTO `context` VALUES (100,3,5,'2/5',NULL,'2024-11-14 05:34:28'),(101,5,21,'2/5','0/1','2024-11-14 05:35:27'),(102,8,1,'2/5/21','0/1','2024-11-14 07:45:54'),(104,8,3,'2/5/21','0/2','2024-11-14 07:52:55'),(105,3,6,'3/6',NULL,'2024-11-14 08:01:06'),(106,5,22,'3/6','0/1','2024-11-14 08:02:19'),(107,8,4,'3/6/22','0/1','2024-11-14 08:04:47'),(108,5,23,'2/5','0/2','2024-11-18 06:11:37'),(109,8,5,'2/5/23','0/1','2024-11-18 06:11:58'),(110,2,29,NULL,NULL,'2024-11-19 10:15:02');
+INSERT INTO `context` VALUES (100,3,5,'2/5',NULL,'2024-11-14 05:34:28'),(101,5,21,'2/5','0/1','2024-11-14 05:35:27'),(102,8,1,'2/5/21','0/1','2024-11-14 07:45:54'),(104,8,3,'2/5/21','0/2','2024-11-14 07:52:55'),(105,3,6,'3/6',NULL,'2024-11-14 08:01:06'),(106,5,22,'3/6','0/1','2024-11-14 08:02:19'),(107,8,4,'3/6/22','0/1','2024-11-14 08:04:47'),(108,5,23,'2/5','0/2','2024-11-18 06:11:37'),(109,8,5,'2/5/23','0/1','2024-11-18 06:11:58'),(110,2,29,NULL,NULL,'2024-11-19 10:15:02'),(111,2,30,NULL,NULL,'2024-11-27 04:16:07'),(112,2,31,NULL,NULL,'2024-11-27 07:14:47'),(113,2,32,NULL,NULL,'2024-11-27 07:18:47'),(114,3,7,'4/7',NULL,'2024-11-27 11:00:17'),(115,3,8,'4/8',NULL,'2024-11-27 11:02:18'),(116,3,9,'6/9',NULL,'2024-11-27 11:26:04');
 /*!40000 ALTER TABLE `context` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,8 +218,10 @@ DROP TABLE IF EXISTS `course_category`;
 CREATE TABLE `course_category` (
   `course_category_id` int NOT NULL AUTO_INCREMENT,
   `course_category_name` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `certificate_id` int DEFAULT NULL,
   PRIMARY KEY (`course_category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,7 +230,7 @@ CREATE TABLE `course_category` (
 
 LOCK TABLES `course_category` WRITE;
 /*!40000 ALTER TABLE `course_category` DISABLE KEYS */;
-INSERT INTO `course_category` VALUES (2,'TNPSC'),(3,'UPSC');
+INSERT INTO `course_category` VALUES (2,'TNPSC',NULL,NULL),(3,'UPSC',NULL,NULL),(4,'Google Cloud','/uploads/categoryImage-1732704454504-431862453.png',2),(6,'Azure Cloud','/uploads/categoryImage-1732706674167-997571844.png',2);
 /*!40000 ALTER TABLE `course_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -278,7 +281,7 @@ CREATE TABLE `courses` (
   KEY `fk_difficulty_level` (`difficulty_level_id`),
   CONSTRAINT `fk_course_category` FOREIGN KEY (`course_category_id`) REFERENCES `course_category` (`course_category_id`),
   CONSTRAINT `fk_difficulty_level` FOREIGN KEY (`difficulty_level_id`) REFERENCES `course_difficulty_level` (`difficulty_level_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -287,7 +290,7 @@ CREATE TABLE `courses` (
 
 LOCK TABLES `courses` WRITE;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
-INSERT INTO `courses` VALUES (5,'GROUP 1','2024-11-14 05:34:28','group1',2,'2024-11-14','2024-11-30','\\uploads\\courseImage-1731562468107-602539038.jpg','Group 1 exam',NULL,NULL),(6,'UPSC','2024-11-14 08:01:06','upsc',3,'2024-11-14','2024-11-30','\\uploads\\courseImage-1731571266268-274770380.jpg','UPSC Exam Test',NULL,NULL);
+INSERT INTO `courses` VALUES (5,'Railways','2024-11-14 05:34:28','group1',2,'2024-11-14','2024-11-30','\\uploads\\courseImage-1731562468107-602539038.jpg','Group 1 exam',NULL,NULL),(6,'IAS','2024-11-14 08:01:06','upsc',3,'2024-11-14','2024-11-30','\\uploads\\courseImage-1731571266268-274770380.jpg','UPSC Exam Test',NULL,NULL),(7,'Google Associate Cloud Engineer','2024-11-27 11:00:17','cloud engineer',4,'2024-11-27','2024-11-30','\\uploads\\courseImage-1732705217627-181638665.png','Google Associate Cloud Engineer ',NULL,NULL),(8,'Google Professional Cloud Architect','2024-11-27 11:02:18','cloud architect',4,'2024-11-28','2024-11-30','\\uploads\\courseImage-1732705338541-600817074.png','Google Professional Cloud Architect',NULL,NULL),(9,'Microsoft Azure Fundamentals','2024-11-27 11:26:04','Azure',6,'2024-11-20','2024-11-28','\\uploads\\courseImage-1732706764310-85363402.png','Microsoft Azure Fundamentals',NULL,NULL);
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -514,6 +517,69 @@ LOCK TABLES `pages` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `past_pappers_quiz_text`
+--
+
+DROP TABLE IF EXISTS `past_pappers_quiz_text`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `past_pappers_quiz_text` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `text` text NOT NULL,
+  `option` json NOT NULL,
+  `correct_answer` text NOT NULL,
+  `question_type` varchar(50) NOT NULL,
+  `year` int NOT NULL,
+  `month` varchar(20) NOT NULL,
+  `difficulty_level` tinyint NOT NULL,
+  `courseid` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `past_pappers_quiz_text`
+--
+
+LOCK TABLES `past_pappers_quiz_text` WRITE;
+/*!40000 ALTER TABLE `past_pappers_quiz_text` DISABLE KEYS */;
+/*!40000 ALTER TABLE `past_pappers_quiz_text` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `practice_quiz_text`
+--
+
+DROP TABLE IF EXISTS `practice_quiz_text`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `practice_quiz_text` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `text` text NOT NULL,
+  `correct_answer` text NOT NULL,
+  `option` json NOT NULL,
+  `question_type` varchar(50) NOT NULL,
+  `courseid` int NOT NULL,
+  `difficulty_level` tinyint NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `practice_quiz_text_chk_1` CHECK ((`difficulty_level` between 1 and 3))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `practice_quiz_text`
+--
+
+LOCK TABLES `practice_quiz_text` WRITE;
+/*!40000 ALTER TABLE `practice_quiz_text` DISABLE KEYS */;
+/*!40000 ALTER TABLE `practice_quiz_text` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `practice_test`
 --
 
@@ -528,7 +594,7 @@ CREATE TABLE `practice_test` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -537,7 +603,7 @@ CREATE TABLE `practice_test` (
 
 LOCK TABLES `practice_test` WRITE;
 /*!40000 ALTER TABLE `practice_test` DISABLE KEYS */;
-INSERT INTO `practice_test` VALUES (2,29,'[1, 3]',3,'2024-11-20 10:06:02','2024-11-21 07:36:21'),(3,29,'[1]',2,'2024-11-21 07:23:45','2024-11-21 07:23:45'),(4,29,'[3]',2,'2024-11-21 07:26:55','2024-11-21 07:26:55'),(5,29,'[1, 5]',2,'2024-11-21 08:34:00','2024-11-21 08:34:00');
+INSERT INTO `practice_test` VALUES (2,29,'[1, 3]',3,'2024-11-20 10:06:02','2024-11-21 07:36:21'),(3,29,'[1]',2,'2024-11-21 07:23:45','2024-11-21 07:23:45'),(4,29,'[3]',2,'2024-11-21 07:26:55','2024-11-21 07:26:55'),(5,29,'[1, 5]',2,'2024-11-21 08:34:00','2024-11-21 08:34:00'),(6,29,'[1]',2,'2024-11-21 10:08:16','2024-11-21 10:08:16'),(7,29,'[1, 3]',2,'2024-11-21 10:09:08','2024-11-21 10:09:08'),(8,29,'[1, 3]',2,'2024-11-21 10:23:49','2024-11-21 10:23:49'),(9,29,'[1, 3]',2,'2024-11-21 10:42:24','2024-11-21 10:42:24'),(10,29,'[1, 3]',2,'2024-11-22 04:08:13','2024-11-22 04:08:13'),(11,29,'[1, 3]',3,'2024-11-22 04:13:08','2024-11-22 04:13:08'),(12,29,'[1]',3,'2024-11-25 04:10:09','2024-11-25 04:10:09'),(13,29,'[1]',2,'2024-11-25 05:17:36','2024-11-25 05:17:36'),(14,29,'[3]',2,'2024-11-26 11:17:59','2024-11-26 11:17:59'),(15,29,'[3]',1,'2024-11-26 11:19:28','2024-11-26 11:19:28');
 /*!40000 ALTER TABLE `practice_test` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -638,12 +704,13 @@ CREATE TABLE `quiz_text` (
   `feedback` json DEFAULT NULL,
   `submoduleid` int DEFAULT NULL,
   `difficulty_level` int NOT NULL DEFAULT '1',
+  `created_by` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_quiztext_course` (`courseid`),
   KEY `fk_quiztext_module` (`moduleid`),
   CONSTRAINT `fk_quiztext_course` FOREIGN KEY (`courseid`) REFERENCES `courses` (`courseid`),
   CONSTRAINT `fk_quiztext_module` FOREIGN KEY (`moduleid`) REFERENCES `modules` (`moduleid`)
-) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -652,7 +719,7 @@ CREATE TABLE `quiz_text` (
 
 LOCK TABLES `quiz_text` WRITE;
 /*!40000 ALTER TABLE `quiz_text` DISABLE KEYS */;
-INSERT INTO `quiz_text` VALUES (109,'<p>A train running at the speed of 60 km/hr crosses a pole in 9 seconds. What is the length of the train?</p><p><br></p>','[{\"option\": \"120 metres\", \"feedback\": \"\"}, {\"option\": \"180 metres\", \"feedback\": \"\"}, {\"option\": \"324 metres\", \"feedback\": \"\"}, {\"option\": \"150 metres\", \"feedback\": \"\"}]','2024-11-15 04:29:56','150 metres','multiple_choice',NULL,21,5,NULL,NULL,1,1),(110,'<p>The length of the bridge, which a train 130 metres long and travelling at 45 km/hr can cross in 30 seconds, is:</p>','[{\"option\": \"200m\", \"feedback\": \"\"}, {\"option\": \"225m\", \"feedback\": \"\"}, {\"option\": \"245m\", \"feedback\": \"\"}, {\"option\": \"250m\", \"feedback\": \"\"}]','2024-11-15 07:24:38','245m','multiple_choice',NULL,21,5,NULL,NULL,1,1),(111,'<div class=\"bix-td-qtxt table-responsive w-100\">A\r\n train passes a station platform in 36 seconds and a man standing on the\r\n platform in 20 seconds. If the speed of the train is 54 km/hr, what is \r\nthe length of the platform?\r\n</div>','[{\"option\": \"120 m\", \"feedback\": \"\"}, {\"option\": \"240 m\", \"feedback\": \"\"}, {\"option\": \"300 m\", \"feedback\": \"\"}, {\"option\": \"None of these\", \"feedback\": \"\"}]','2024-11-15 07:27:09','240 m','multiple_choice',NULL,21,5,NULL,NULL,1,1),(113,'A train 240 m long passes a pole in 24 seconds. How long will it take to pass a platform 650 m long?','[{\"option\": \"65 sec\", \"feedback\": \"\"}, {\"option\": \"89 sec\", \"feedback\": \"\"}, {\"option\": \"100 sec\", \"feedback\": \"\"}, {\"option\": \"150 sec\", \"feedback\": \"\"}]','2024-11-15 10:14:49','89 sec','multiple_choice',NULL,21,5,NULL,NULL,1,1),(114,'<p>A boat can travel with a speed of 13 km/hr in still water. If the speed \r\nof the stream is 4 km/hr, find the time taken by the boat to go 68 km \r\ndownstream.</p>','[{\"option\": \"2 hours\", \"feedback\": \"\"}, {\"option\": \"3 hours\", \"feedback\": \"\"}, {\"option\": \"4 hours\", \"feedback\": \"\"}, {\"option\": \"5 hours\", \"feedback\": \"\"}]','2024-11-19 04:37:07','4 hours','multiple_choice',NULL,21,5,NULL,NULL,3,1),(115,'<p>A man\'s speed with the current is 15 km/hr and the speed of the current is 2.5 km/hr. The man\'s speed against the current is:\r\n</p>','[{\"option\": \"8.5 km/hr\", \"feedback\": \"\"}, {\"option\": \"9 km/hr\", \"feedback\": \"\"}, {\"option\": \"10 km/hr\", \"feedback\": \"\"}, {\"option\": \" 12.5 km/hr\", \"feedback\": \"\"}]','2024-11-19 04:39:24','10 km/hr','multiple_choice',NULL,21,5,NULL,NULL,3,1),(116,'<p>A boat running upstream takes 8 hours 48 minutes to cover a certain \r\ndistance, while it takes 4 hours to cover the same distance running \r\ndownstream. What is the ratio between the speed of the boat and speed of\r\n the water current respectively?\r\n</p>','[{\"option\": \"2 : 1\", \"feedback\": \"\"}, {\"option\": \" 3 : 2\", \"feedback\": \"\"}, {\"option\": \"8 : 3\", \"feedback\": \"\"}, {\"option\": \"Cannot be determined\", \"feedback\": \"\"}, {\"option\": \"None of these\", \"feedback\": \"\"}]','2024-11-19 04:43:33','8 : 3','multiple_choice',NULL,21,5,NULL,NULL,3,1),(117,'<p>A motorboat, whose speed in 15 km/hr in still water goes 30 km \r\ndownstream and comes back in a total of 4 hours 30 minutes. The speed of\r\n the stream (in km/hr) is:</p>','[{\"option\": \"4\", \"feedback\": \"\"}, {\"option\": \"5\", \"feedback\": \"\"}, {\"option\": \"6\", \"feedback\": \"\"}, {\"option\": \"10\", \"feedback\": \"\"}]','2024-11-19 04:56:23','5','multiple_choice',NULL,21,5,NULL,NULL,3,1),(118,'<p>A boat running downstream covers a distance of 16 km in 2 hours while \r\nfor covering the same distance upstream, it takes 4 hours. What is the \r\nspeed of the boat in still water?</p>','[{\"option\": \"4 km/hr\", \"feedback\": \"\"}, {\"option\": \" 6 km/hr\", \"feedback\": \"\"}, {\"option\": \"8 km/hr\", \"feedback\": \"\"}, {\"option\": \"Data inadequate\", \"feedback\": \"\"}]','2024-11-21 07:46:42',' 6 km/hr','multiple_choice',NULL,21,5,NULL,NULL,3,2),(119,'<p>The speed of a boat in still water in 15 km/hr and the rate of current \r\nis 3 km/hr. The distance travelled downstream in 12 minutes is:</p>','[{\"option\": \"1.2 km\", \"feedback\": \"\"}, {\"option\": \"1.8 km\", \"feedback\": \"\"}, {\"option\": \"2.4 km\", \"feedback\": \"\"}, {\"option\": \"3.6 km\", \"feedback\": \"\"}]','2024-11-21 07:48:58','3.6 km','multiple_choice',NULL,21,5,NULL,NULL,3,2),(120,'<p>A boat takes 90 minutes less to travel 36 miles downstream than to \r\ntravel the same distance upstream. If the speed of the boat in still \r\nwater is 10 mph, the speed of the stream is:</p>','[{\"option\": \" 2 mph\", \"feedback\": \"\"}, {\"option\": \"2.5 mph\", \"feedback\": \"\"}, {\"option\": \"3 mph\", \"feedback\": \"\"}, {\"option\": \"4 mph\", \"feedback\": \"\"}]','2024-11-21 07:51:32',' 2 mph','multiple_choice',NULL,21,5,NULL,NULL,3,2),(121,'<p>A man can row at 5 kmph in still water. If the velocity of current is 1 \r\nkmph and it takes him 1 hour to row to a place and come back, how far is\r\n the place?\r\n</p>','[{\"option\": \"2.4 km\", \"feedback\": \"\"}, {\"option\": \"2.5 km\", \"feedback\": \"\"}, {\"option\": \" 3 km\", \"feedback\": \"\"}, {\"option\": \"3.6 km\", \"feedback\": \"\"}]','2024-11-21 07:53:17','2.4 km','multiple_choice',NULL,21,5,NULL,NULL,3,3),(122,'<div class=\"bix-td-qno\" id=\"qno10\" rowspan=\"2\"><br></div><div class=\"bix-td-qtxt table-responsive w-100\">\r\nA boat covers a certain distance downstream in 1 hour, while it comes back in 1<img src=\"https://www.indiabix.com/_files/images/aptitude/1-div-1by2.gif\"> hours. If the speed of the stream be 3 kmph, what is the speed of the boat in still water?\r\n</div>','[{\"option\": \"12 kmph\", \"feedback\": \"\"}, {\"option\": \"13 kmph\", \"feedback\": \"\"}, {\"option\": \"14 kmph\", \"feedback\": \"\"}, {\"option\": \"15 kmph\", \"feedback\": \"\"}, {\"option\": \" None of these\", \"feedback\": \"\"}]','2024-11-21 07:54:53','15 kmph','multiple_choice',NULL,21,5,NULL,NULL,3,3),(123,'<p>A train 360 m long is running at a speed of 45 km/hr. In what time will it pass a bridge 140 m long?\r\n</p>','[{\"option\": \"40 sec\", \"feedback\": \"\"}, {\"option\": \"42 sec\", \"feedback\": \"\"}, {\"option\": \"45 sec\", \"feedback\": \"\"}, {\"option\": \"48 sec\", \"feedback\": \"\"}]','2024-11-21 07:57:26','40 sec','multiple_choice',NULL,21,5,NULL,NULL,1,2),(124,'<div class=\"bix-td-qno\" id=\"qno9\" rowspan=\"2\"><br></div><div class=\"bix-td-qtxt table-responsive w-100\">Two trains are moving in opposite directions @ 60 km/hr and 90 km/hr. \r\nTheir lengths are 1.10 km and 0.9 km respectively. The time taken by the\r\n slower train to cross the faster train in seconds is:\r\n</div>','[{\"option\": \"36\", \"feedback\": \"\"}, {\"option\": \"45\", \"feedback\": \"\"}, {\"option\": \"48\", \"feedback\": \"\"}, {\"option\": \"49\", \"feedback\": \"\"}]','2024-11-21 07:59:04','48','multiple_choice',NULL,21,5,NULL,NULL,1,2),(125,'<p>A jogger running at 9 kmph alongside a railway track in 240 metres ahead\r\n of the engine of a 120 metres long train running at 45 kmph in the same\r\n direction. In how much time will the train pass the jogger?</p>','[{\"option\": \" 3.6 sec\", \"feedback\": \"\"}, {\"option\": \"18 sec\", \"feedback\": \"\"}, {\"option\": \"36 sec\", \"feedback\": \"\"}, {\"option\": \"72 sec\", \"feedback\": \"\"}]','2024-11-21 08:02:51','72 sec','multiple_choice',NULL,21,5,NULL,NULL,1,2),(126,'<p>A 270 metres long train running at the speed of 120 kmph crosses another\r\n train running in opposite direction at the speed of 80 kmph in 9 \r\nseconds. What is the length of the other train?\r\n</p>','[{\"option\": \"230 m\", \"feedback\": \"\"}, {\"option\": \"240 m\", \"feedback\": \"\"}, {\"option\": \"260 m\", \"feedback\": \"\"}, {\"option\": \"320 m\", \"feedback\": \"\"}, {\"option\": \"None of these\", \"feedback\": \"\"}]','2024-11-21 08:04:54','230 m','multiple_choice',NULL,21,5,NULL,NULL,1,3),(127,'<p>A goods train runs at the speed of 72 kmph and crosses a 250 m long \r\nplatform in 26 seconds. What is the length of the goods train?\r\n</p>','[{\"option\": \" 230 m\", \"feedback\": \"\"}, {\"option\": \"240 m\", \"feedback\": \"\"}, {\"option\": \"260 m\", \"feedback\": \"\"}, {\"option\": \"270 m\", \"feedback\": \"\"}]','2024-11-21 08:05:48','270 m','multiple_choice',NULL,21,5,NULL,NULL,1,3),(128,'<p>Two trains, each 100 m long, moving in opposite directions, cross each \r\nother in 8 seconds. If one is moving twice as fast the other, then the \r\nspeed of the faster train is:\r\n</p>','[{\"option\": \"30 km/hr\", \"feedback\": \"\"}, {\"option\": \"45 km/hr\", \"feedback\": \"\"}, {\"option\": \" 60 km/hr\", \"feedback\": \"\"}, {\"option\": \"75 km/hr\", \"feedback\": \"\"}]','2024-11-21 08:07:00',' 60 km/hr','multiple_choice',NULL,21,5,NULL,NULL,1,3),(129,'<p>A boatman goes 2 km against the current of the stream in 1 hour and goes\r\n 1 km along the current in 10 minutes. How long will it take to go 5 km \r\nin stationary water?\r\n</p>','[{\"option\": \"40 minutes\", \"feedback\": \"\"}, {\"option\": \"1 hour\", \"feedback\": \"\"}, {\"option\": \" 1 hr 15 min\", \"feedback\": \"\"}, {\"option\": \"1 hr 30 min\", \"feedback\": \"\"}]','2024-11-21 08:08:53',' 1 hr 15 min','multiple_choice',NULL,21,5,NULL,NULL,3,3),(130,'<p>DIVA:OPERA</p>','[{\"option\": \"producer:theatre\", \"feedback\": \"\"}, {\"option\": \"director:drama\", \"feedback\": \"\"}, {\"option\": \"conductor:bus\", \"feedback\": \"\"}, {\"option\": \" thespian:play\", \"feedback\": \"\"}]','2024-11-21 08:11:33',' thespian:play','multiple_choice',NULL,23,5,NULL,NULL,5,1),(131,'<p>GRAIN:SALT</p>','[{\"option\": \" shard:pottery\", \"feedback\": \"\"}, {\"option\": \"shred:wood\", \"feedback\": \"\"}, {\"option\": \"blades:grass\", \"feedback\": \"\"}, {\"option\": \"chip:glass\", \"feedback\": \"\"}]','2024-11-21 08:12:35','chip:glass','multiple_choice',NULL,23,5,NULL,NULL,5,1),(132,'<p>THRUST:SPEAR</p>','[{\"option\": \"mangle:iron\", \"feedback\": \"\"}, {\"option\": \"scabbard:sword\", \"feedback\": \"\"}, {\"option\": \"bow:arrow\", \"feedback\": \"\"}, {\"option\": \" fence:epee\", \"feedback\": \"\"}]','2024-11-21 08:13:28',' fence:epee','multiple_choice',NULL,23,5,NULL,NULL,5,2);
+INSERT INTO `quiz_text` VALUES (109,'<p>A train running at the speed of 60 km/hr crosses a pole in 9 seconds. What is the length of the train?</p><p><br></p>','[{\"option\": \"120 metres\", \"feedback\": \"\"}, {\"option\": \"180 metres\", \"feedback\": \"\"}, {\"option\": \"324 metres\", \"feedback\": \"\"}, {\"option\": \"150 metres\", \"feedback\": \"\"}]','2024-11-15 04:29:56','150 metres','multiple_choice',NULL,21,5,NULL,NULL,1,1,NULL),(110,'<p>The length of the bridge, which a train 130 metres long and travelling at 45 km/hr can cross in 30 seconds, is:</p>','[{\"option\": \"200m\", \"feedback\": \"\"}, {\"option\": \"225m\", \"feedback\": \"\"}, {\"option\": \"245m\", \"feedback\": \"\"}, {\"option\": \"250m\", \"feedback\": \"\"}]','2024-11-15 07:24:38','245m','multiple_choice',NULL,21,5,NULL,NULL,1,1,NULL),(111,'<div class=\"bix-td-qtxt table-responsive w-100\">A\r\n train passes a station platform in 36 seconds and a man standing on the\r\n platform in 20 seconds. If the speed of the train is 54 km/hr, what is \r\nthe length of the platform?\r\n</div>','[{\"option\": \"120 m\", \"feedback\": \"\"}, {\"option\": \"240 m\", \"feedback\": \"\"}, {\"option\": \"300 m\", \"feedback\": \"\"}, {\"option\": \"None of these\", \"feedback\": \"\"}]','2024-11-15 07:27:09','240 m','multiple_choice',NULL,21,5,NULL,NULL,1,1,NULL),(113,'A train 240 m long passes a pole in 24 seconds. How long will it take to pass a platform 650 m long?','[{\"option\": \"65 sec\", \"feedback\": \"\"}, {\"option\": \"89 sec\", \"feedback\": \"\"}, {\"option\": \"100 sec\", \"feedback\": \"\"}, {\"option\": \"150 sec\", \"feedback\": \"\"}]','2024-11-15 10:14:49','89 sec','multiple_choice',NULL,21,5,NULL,NULL,1,1,NULL),(114,'<p>A boat can travel with a speed of 13 km/hr in still water. If the speed \r\nof the stream is 4 km/hr, find the time taken by the boat to go 68 km \r\ndownstream.</p>','[{\"option\": \"2 hours\", \"feedback\": \"\"}, {\"option\": \"3 hours\", \"feedback\": \"\"}, {\"option\": \"4 hours\", \"feedback\": \"\"}, {\"option\": \"5 hours\", \"feedback\": \"\"}]','2024-11-19 04:37:07','4 hours','multiple_choice',NULL,21,5,NULL,NULL,3,1,NULL),(115,'<p>A man\'s speed with the current is 15 km/hr and the speed of the current is 2.5 km/hr. The man\'s speed against the current is:\r\n</p>','[{\"option\": \"8.5 km/hr\", \"feedback\": \"\"}, {\"option\": \"9 km/hr\", \"feedback\": \"\"}, {\"option\": \"10 km/hr\", \"feedback\": \"\"}, {\"option\": \" 12.5 km/hr\", \"feedback\": \"\"}]','2024-11-19 04:39:24','10 km/hr','multiple_choice',NULL,21,5,NULL,NULL,3,1,NULL),(116,'<p>A boat running upstream takes 8 hours 48 minutes to cover a certain \r\ndistance, while it takes 4 hours to cover the same distance running \r\ndownstream. What is the ratio between the speed of the boat and speed of\r\n the water current respectively?\r\n</p>','[{\"option\": \"2 : 1\", \"feedback\": \"\"}, {\"option\": \" 3 : 2\", \"feedback\": \"\"}, {\"option\": \"8 : 3\", \"feedback\": \"\"}, {\"option\": \"Cannot be determined\", \"feedback\": \"\"}, {\"option\": \"None of these\", \"feedback\": \"\"}]','2024-11-19 04:43:33','8 : 3','multiple_choice',NULL,21,5,NULL,NULL,3,1,NULL),(117,'<p>A motorboat, whose speed in 15 km/hr in still water goes 30 km \r\ndownstream and comes back in a total of 4 hours 30 minutes. The speed of\r\n the stream (in km/hr) is:</p>','[{\"option\": \"4\", \"feedback\": \"\"}, {\"option\": \"5\", \"feedback\": \"\"}, {\"option\": \"6\", \"feedback\": \"\"}, {\"option\": \"10\", \"feedback\": \"\"}]','2024-11-19 04:56:23','5','multiple_choice',NULL,21,5,NULL,NULL,3,1,NULL),(118,'<p>A boat running downstream covers a distance of 16 km in 2 hours while \r\nfor covering the same distance upstream, it takes 4 hours. What is the \r\nspeed of the boat in still water?</p>','[{\"option\": \"4 km/hr\", \"feedback\": \"\"}, {\"option\": \" 6 km/hr\", \"feedback\": \"\"}, {\"option\": \"8 km/hr\", \"feedback\": \"\"}, {\"option\": \"Data inadequate\", \"feedback\": \"\"}]','2024-11-21 07:46:42',' 6 km/hr','multiple_choice',NULL,21,5,NULL,NULL,3,2,NULL),(119,'<p>The speed of a boat in still water in 15 km/hr and the rate of current \r\nis 3 km/hr. The distance travelled downstream in 12 minutes is:</p>','[{\"option\": \"1.2 km\", \"feedback\": \"\"}, {\"option\": \"1.8 km\", \"feedback\": \"\"}, {\"option\": \"2.4 km\", \"feedback\": \"\"}, {\"option\": \"3.6 km\", \"feedback\": \"\"}]','2024-11-21 07:48:58','3.6 km','multiple_choice',NULL,21,5,NULL,NULL,3,2,NULL),(120,'<p>A boat takes 90 minutes less to travel 36 miles downstream than to \r\ntravel the same distance upstream. If the speed of the boat in still \r\nwater is 10 mph, the speed of the stream is:</p>','[{\"option\": \" 2 mph\", \"feedback\": \"\"}, {\"option\": \"2.5 mph\", \"feedback\": \"\"}, {\"option\": \"3 mph\", \"feedback\": \"\"}, {\"option\": \"4 mph\", \"feedback\": \"\"}]','2024-11-21 07:51:32',' 2 mph','multiple_choice',NULL,21,5,NULL,NULL,3,2,NULL),(121,'<p>A man can row at 5 kmph in still water. If the velocity of current is 1 \r\nkmph and it takes him 1 hour to row to a place and come back, how far is\r\n the place?\r\n</p>','[{\"option\": \"2.4 km\", \"feedback\": \"\"}, {\"option\": \"2.5 km\", \"feedback\": \"\"}, {\"option\": \" 3 km\", \"feedback\": \"\"}, {\"option\": \"3.6 km\", \"feedback\": \"\"}]','2024-11-21 07:53:17','2.4 km','multiple_choice',NULL,21,5,NULL,NULL,3,3,NULL),(122,'<div class=\"bix-td-qno\" id=\"qno10\" rowspan=\"2\"><br></div><div class=\"bix-td-qtxt table-responsive w-100\">\r\nA boat covers a certain distance downstream in 1 hour, while it comes back in 1<img src=\"https://www.indiabix.com/_files/images/aptitude/1-div-1by2.gif\"> hours. If the speed of the stream be 3 kmph, what is the speed of the boat in still water?\r\n</div>','[{\"option\": \"12 kmph\", \"feedback\": \"\"}, {\"option\": \"13 kmph\", \"feedback\": \"\"}, {\"option\": \"14 kmph\", \"feedback\": \"\"}, {\"option\": \"15 kmph\", \"feedback\": \"\"}, {\"option\": \" None of these\", \"feedback\": \"\"}]','2024-11-21 07:54:53','15 kmph','multiple_choice',NULL,21,5,NULL,NULL,3,3,NULL),(123,'<p>A train 360 m long is running at a speed of 45 km/hr. In what time will it pass a bridge 140 m long?\r\n</p>','[{\"option\": \"40 sec\", \"feedback\": \"\"}, {\"option\": \"42 sec\", \"feedback\": \"\"}, {\"option\": \"45 sec\", \"feedback\": \"\"}, {\"option\": \"48 sec\", \"feedback\": \"\"}]','2024-11-21 07:57:26','40 sec','multiple_choice',NULL,21,5,NULL,NULL,1,2,NULL),(124,'<div class=\"bix-td-qno\" id=\"qno9\" rowspan=\"2\"><br></div><div class=\"bix-td-qtxt table-responsive w-100\">Two trains are moving in opposite directions @ 60 km/hr and 90 km/hr. \r\nTheir lengths are 1.10 km and 0.9 km respectively. The time taken by the\r\n slower train to cross the faster train in seconds is:\r\n</div>','[{\"option\": \"36\", \"feedback\": \"\"}, {\"option\": \"45\", \"feedback\": \"\"}, {\"option\": \"48\", \"feedback\": \"\"}, {\"option\": \"49\", \"feedback\": \"\"}]','2024-11-21 07:59:04','48','multiple_choice',NULL,21,5,NULL,NULL,1,2,NULL),(125,'<p>A jogger running at 9 kmph alongside a railway track in 240 metres ahead\r\n of the engine of a 120 metres long train running at 45 kmph in the same\r\n direction. In how much time will the train pass the jogger?</p>','[{\"option\": \" 3.6 sec\", \"feedback\": \"\"}, {\"option\": \"18 sec\", \"feedback\": \"\"}, {\"option\": \"36 sec\", \"feedback\": \"\"}, {\"option\": \"72 sec\", \"feedback\": \"\"}]','2024-11-21 08:02:51','72 sec','multiple_choice',NULL,21,5,NULL,NULL,1,2,NULL),(126,'<p>A 270 metres long train running at the speed of 120 kmph crosses another\r\n train running in opposite direction at the speed of 80 kmph in 9 \r\nseconds. What is the length of the other train?\r\n</p>','[{\"option\": \"230 m\", \"feedback\": \"\"}, {\"option\": \"240 m\", \"feedback\": \"\"}, {\"option\": \"260 m\", \"feedback\": \"\"}, {\"option\": \"320 m\", \"feedback\": \"\"}, {\"option\": \"None of these\", \"feedback\": \"\"}]','2024-11-21 08:04:54','230 m','multiple_choice',NULL,21,5,NULL,NULL,1,3,NULL),(127,'<p>A goods train runs at the speed of 72 kmph and crosses a 250 m long \r\nplatform in 26 seconds. What is the length of the goods train?\r\n</p>','[{\"option\": \" 230 m\", \"feedback\": \"\"}, {\"option\": \"240 m\", \"feedback\": \"\"}, {\"option\": \"260 m\", \"feedback\": \"\"}, {\"option\": \"270 m\", \"feedback\": \"\"}]','2024-11-21 08:05:48','270 m','multiple_choice',NULL,21,5,NULL,NULL,1,3,NULL),(128,'<p>Two trains, each 100 m long, moving in opposite directions, cross each \r\nother in 8 seconds. If one is moving twice as fast the other, then the \r\nspeed of the faster train is:\r\n</p>','[{\"option\": \"30 km/hr\", \"feedback\": \"\"}, {\"option\": \"45 km/hr\", \"feedback\": \"\"}, {\"option\": \" 60 km/hr\", \"feedback\": \"\"}, {\"option\": \"75 km/hr\", \"feedback\": \"\"}]','2024-11-21 08:07:00',' 60 km/hr','multiple_choice',NULL,21,5,NULL,NULL,1,3,NULL),(129,'<p>A boatman goes 2 km against the current of the stream in 1 hour and goes\r\n 1 km along the current in 10 minutes. How long will it take to go 5 km \r\nin stationary water?\r\n</p>','[{\"option\": \"40 minutes\", \"feedback\": \"\"}, {\"option\": \"1 hour\", \"feedback\": \"\"}, {\"option\": \" 1 hr 15 min\", \"feedback\": \"\"}, {\"option\": \"1 hr 30 min\", \"feedback\": \"\"}]','2024-11-21 08:08:53',' 1 hr 15 min','multiple_choice',NULL,21,5,NULL,NULL,3,3,NULL),(130,'<p>DIVA:OPERA</p>','[{\"option\": \"producer:theatre\", \"feedback\": \"\"}, {\"option\": \"director:drama\", \"feedback\": \"\"}, {\"option\": \"conductor:bus\", \"feedback\": \"\"}, {\"option\": \" thespian:play\", \"feedback\": \"\"}]','2024-11-21 08:11:33',' thespian:play','multiple_choice',NULL,23,5,NULL,NULL,5,1,NULL),(131,'<p>GRAIN:SALT</p>','[{\"option\": \" shard:pottery\", \"feedback\": \"\"}, {\"option\": \"shred:wood\", \"feedback\": \"\"}, {\"option\": \"blades:grass\", \"feedback\": \"\"}, {\"option\": \"chip:glass\", \"feedback\": \"\"}]','2024-11-21 08:12:35','chip:glass','multiple_choice',NULL,23,5,NULL,NULL,5,1,NULL),(132,'<p>THRUST:SPEAR</p>','[{\"option\": \"mangle:iron\", \"feedback\": \"\"}, {\"option\": \"scabbard:sword\", \"feedback\": \"\"}, {\"option\": \"bow:arrow\", \"feedback\": \"\"}, {\"option\": \" fence:epee\", \"feedback\": \"\"}]','2024-11-21 08:13:28',' fence:epee','multiple_choice',NULL,23,5,NULL,NULL,5,2,NULL),(133,'<div class=\"bix-td-qno\" id=\"qno1\" rowspan=\"2\"><br></div><div class=\"bix-td-qtxt table-responsive w-100\">After driving professor Kumar to the museum she dropped him at his hotel.</div>','[{\"option\": \"After being driven to the museum, Professor Kumar was dropped at his hotel.\", \"feedback\": \"\"}, {\"option\": \"Professor Kumar was being driven dropped at his hotel.\", \"feedback\": \"\"}, {\"option\": \"After she had driven Professor Kumar to the museum she had dropped him at his hotel.\", \"feedback\": \"\"}, {\"option\": \" After she was driven Professor Kumar to the museum she had dropped him at his hotel.\", \"feedback\": \"\"}]','2024-11-23 08:28:42','After being driven to the museum, Professor Kumar was dropped at his hotel.','multiple_choice',NULL,23,5,NULL,NULL,5,2,NULL);
 /*!40000 ALTER TABLE `quiz_text` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -676,7 +743,7 @@ CREATE TABLE `quiz_type` (
 
 LOCK TABLES `quiz_type` WRITE;
 /*!40000 ALTER TABLE `quiz_type` DISABLE KEYS */;
-INSERT INTO `quiz_type` VALUES (1,'Practice Test'),(2,'Mock Test'),(3,'Old Question Test');
+INSERT INTO `quiz_type` VALUES (1,'Past Paper'),(2,'Mock Test'),(3,'Module Practice');
 /*!40000 ALTER TABLE `quiz_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -754,7 +821,7 @@ CREATE TABLE `standardlog` (
   `time_created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`log_id`),
   UNIQUE KEY `log_id` (`log_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=963 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=993 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -763,7 +830,7 @@ CREATE TABLE `standardlog` (
 
 LOCK TABLES `standardlog` WRITE;
 /*!40000 ALTER TABLE `standardlog` DISABLE KEYS */;
-INSERT INTO `standardlog` VALUES (951,29,'login','logged','2024-11-19 10:16:18'),(952,29,'login','logged','2024-11-19 12:17:30'),(953,29,'login','logged','2024-11-19 12:33:03'),(954,29,'login','logged','2024-11-20 03:52:11'),(955,29,'login','logged','2024-11-20 06:58:40'),(956,29,'login','logged','2024-11-20 06:59:34'),(957,29,'login','logged','2024-11-20 07:01:35'),(958,29,'login','logged','2024-11-21 05:09:35'),(959,29,'login','logged','2024-11-21 05:42:07'),(960,29,'login','logged','2024-11-21 07:18:36'),(961,29,'logout','logged out','2024-11-21 07:42:27'),(962,29,'login','logged','2024-11-21 08:33:34');
+INSERT INTO `standardlog` VALUES (951,29,'login','logged','2024-11-19 10:16:18'),(952,29,'login','logged','2024-11-19 12:17:30'),(953,29,'login','logged','2024-11-19 12:33:03'),(954,29,'login','logged','2024-11-20 03:52:11'),(955,29,'login','logged','2024-11-20 06:58:40'),(956,29,'login','logged','2024-11-20 06:59:34'),(957,29,'login','logged','2024-11-20 07:01:35'),(958,29,'login','logged','2024-11-21 05:09:35'),(959,29,'login','logged','2024-11-21 05:42:07'),(960,29,'login','logged','2024-11-21 07:18:36'),(961,29,'logout','logged out','2024-11-21 07:42:27'),(962,29,'login','logged','2024-11-21 08:33:34'),(963,29,'login','logged','2024-11-21 10:20:56'),(964,29,'login','logged','2024-11-21 10:34:44'),(965,29,'login','logged','2024-11-22 04:07:33'),(966,29,'login','logged','2024-11-23 05:44:06'),(967,29,'login','logged','2024-11-25 04:08:02'),(968,29,'login','logged','2024-11-26 04:48:55'),(969,29,'login','logged','2024-11-26 10:56:44'),(970,29,'logout','logged out','2024-11-26 11:01:16'),(971,29,'login','logged','2024-11-26 11:01:38'),(972,29,'logout','logged out','2024-11-26 11:02:33'),(973,29,'login','logged','2024-11-26 11:05:55'),(974,29,'logout','logged out','2024-11-26 11:06:26'),(975,29,'login','logged','2024-11-26 11:17:27'),(976,29,'logout','logged out','2024-11-26 11:21:24'),(977,29,'login','logged','2024-11-27 04:20:08'),(978,29,'login','logged','2024-11-27 04:22:53'),(979,30,'login','logged','2024-11-27 04:23:45'),(980,30,'login','logged','2024-11-27 04:41:30'),(981,30,'login','logged','2024-11-27 04:46:16'),(982,29,'login','logged','2024-11-27 06:57:04'),(983,31,'login','logged','2024-11-27 07:15:22'),(984,31,'login','logged','2024-11-27 07:15:36'),(985,31,'login','logged','2024-11-27 07:15:53'),(986,32,'login','logged','2024-11-27 07:19:19'),(987,30,'login','logged','2024-11-27 07:24:31'),(988,30,'login','logged','2024-11-27 07:25:01'),(989,30,'login','logged','2024-11-27 07:54:29'),(990,29,'login','logged','2024-11-27 11:06:52'),(991,29,'logout','logged out','2024-11-27 11:26:10'),(992,29,'login','logged','2024-11-27 11:26:23');
 /*!40000 ALTER TABLE `standardlog` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -800,6 +867,67 @@ CREATE TABLE `student` (
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sub_category`
+--
+
+DROP TABLE IF EXISTS `sub_category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sub_category` (
+  `sub_category_id` int NOT NULL AUTO_INCREMENT,
+  `certificate_id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`sub_category_id`),
+  KEY `certificate_id` (`certificate_id`),
+  CONSTRAINT `sub_category_ibfk_1` FOREIGN KEY (`certificate_id`) REFERENCES `type_of_certificate` (`certificate_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sub_category`
+--
+
+LOCK TABLES `sub_category` WRITE;
+/*!40000 ALTER TABLE `sub_category` DISABLE KEYS */;
+INSERT INTO `sub_category` VALUES (1,1,'Bank Exams','bank','2024-11-27 05:57:25','2024-11-27 05:57:25'),(2,1,'Railway Exams','railway','2024-11-27 05:57:25','2024-11-27 05:57:25'),(3,1,'Medical Exams','medical','2024-11-27 05:57:25','2024-11-27 05:57:25'),(4,2,'AWS ','aws','2024-11-27 05:57:25','2024-11-27 07:02:37'),(5,2,'Azure','azure','2024-11-27 05:57:25','2024-11-27 07:02:37'),(6,2,'Google ','gcloud','2024-11-27 05:57:25','2024-11-27 07:02:37');
+/*!40000 ALTER TABLE `sub_category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `subcourses`
+--
+
+DROP TABLE IF EXISTS `subcourses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `subcourses` (
+  `subcourse_id` int NOT NULL AUTO_INCREMENT,
+  `sub_category_id` int NOT NULL,
+  `course_name` varchar(255) NOT NULL,
+  `description` text,
+  `duration` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`subcourse_id`),
+  KEY `sub_category_id` (`sub_category_id`),
+  CONSTRAINT `subcourses_ibfk_1` FOREIGN KEY (`sub_category_id`) REFERENCES `sub_category` (`sub_category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `subcourses`
+--
+
+LOCK TABLES `subcourses` WRITE;
+/*!40000 ALTER TABLE `subcourses` DISABLE KEYS */;
+INSERT INTO `subcourses` VALUES (1,1,'SBI PO Exam Preparation','Comprehensive training for SBI PO exam covering all sections.','6 months','2024-11-27 06:00:41','2024-11-27 06:00:41'),(2,1,'IBPS Clerk Exam Preparation','Focused preparation for IBPS Clerk exam with practice papers.','5 months','2024-11-27 06:00:41','2024-11-27 06:00:41'),(3,1,'RBI Assistant Exam Preparation','Preparation course for RBI Assistant exams with syllabus coverage.','4 months','2024-11-27 06:00:41','2024-11-27 06:00:41'),(4,2,'RRB ALP Exam Preparation','Complete syllabus for RRB Assistant Loco Pilot exams.','6 months','2024-11-27 06:00:41','2024-11-27 06:00:41'),(5,2,'RRB Group D Exam Preparation','Dedicated training for RRB Group D exams with mock tests.','5 months','2024-11-27 06:00:41','2024-11-27 06:00:41'),(6,3,'NEET UG Crash Course','Intensive short-term course for NEET UG with practice exams.','3 months','2024-11-27 06:00:41','2024-11-27 06:00:41'),(7,3,'AIIMS Entrance Exam Prep','Comprehensive preparation for AIIMS entrance with detailed coverage.','1 year','2024-11-27 06:00:41','2024-11-27 06:00:41'),(8,4,'AWS Solutions Architect - Associate','Detailed training for AWS Solutions Architect Associate exam.','3 months','2024-11-27 06:00:41','2024-11-27 06:00:41'),(9,4,'AWS Certified Developer','Comprehensive preparation for AWS Certified Developer exam.','2 months','2024-11-27 06:00:41','2024-11-27 06:00:41'),(10,5,'Microsoft Azure Fundamentals','Introduction to Azure cloud services and core concepts.','2 months','2024-11-27 06:00:41','2024-11-27 06:00:41'),(11,5,'Microsoft Azure Administrator','Intermediate Azure training for administrator certification.','4 months','2024-11-27 06:00:41','2024-11-27 06:00:41'),(12,6,'Google Associate Cloud Engineer','Comprehensive training for Google Associate Cloud Engineer certification.','3 months','2024-11-27 06:00:41','2024-11-27 06:00:41'),(13,6,'Google Professional Cloud Architect','Advanced preparation for Google Professional Cloud Architect certification.','4 months','2024-11-27 06:00:41','2024-11-27 06:00:41');
+/*!40000 ALTER TABLE `subcourses` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -864,6 +992,32 @@ LOCK TABLES `test_details` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `type_of_certificate`
+--
+
+DROP TABLE IF EXISTS `type_of_certificate`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `type_of_certificate` (
+  `certificate_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`certificate_id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `type_of_certificate`
+--
+
+LOCK TABLES `type_of_certificate` WRITE;
+/*!40000 ALTER TABLE `type_of_certificate` DISABLE KEYS */;
+INSERT INTO `type_of_certificate` VALUES (1,'Competitive Exams','2024-11-26 11:15:13'),(2,'Global Certificate Exams','2024-11-26 11:15:13');
+/*!40000 ALTER TABLE `type_of_certificate` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `type_of_section`
 --
 
@@ -910,12 +1064,13 @@ CREATE TABLE `user` (
   `country` varchar(100) DEFAULT NULL,
   `city` varchar(100) DEFAULT NULL,
   `enrolled_courses` json DEFAULT NULL,
+  `certificate_id` int DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `phone_no` (`phone_no`),
   KEY `fk_user_context` (`context_id`),
   CONSTRAINT `fk_user_context` FOREIGN KEY (`context_id`) REFERENCES `context` (`context_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -924,7 +1079,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (29,'siva.v@kgisl.microcollege.in','8608053257','$2b$10$GZQxG3Lxs13Yo0ICdEPVSejtw3oiWawSrSl5RpZKFWH/2KDjbFdii','2024-11-19 10:15:01','Siva V',NULL,110,0,'MCA','Employee','\\uploads\\face1.jpg','TN','IN','Coimbatore','[5]');
+INSERT INTO `user` VALUES (29,'siva.v@kgisl.microcollege.in','8608053257','$2b$10$GZQxG3Lxs13Yo0ICdEPVSejtw3oiWawSrSl5RpZKFWH/2KDjbFdii','2024-11-19 10:15:01','Siva V',NULL,110,0,'MCA','Employee','\\uploads\\face1.jpg','TN','IN','Coimbatore','[5]',2),(30,'devika.eks@kggeniuslabs.com','8608053256','$2b$10$znQ9OTlNEDwtOoBAhTxtjOCat..q8bf8HEFCELOXLtLhr9Pqrd4Q6','2024-11-27 04:16:07','Devika',NULL,111,0,'MCA','Employee','\\uploads\\face1.jpg','TN','IN','Coimbatore','[6]',1),(32,'johnpaul.j@kggeniuslabs.com','8608053258','$2b$10$7Gd94UM8p2q7.YpBZblayuMQeMa4NH3DOA0LT1fA23xdp56936s3K','2024-11-27 07:18:47','John Paul',NULL,113,0,'MSC','Employee','\\uploads\\face1.jpg','TN','IN','Coimbatore',NULL,2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -969,7 +1124,7 @@ CREATE TABLE `user_enrollment` (
   `company_id` int DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`enrollment_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -978,7 +1133,7 @@ CREATE TABLE `user_enrollment` (
 
 LOCK TABLES `user_enrollment` WRITE;
 /*!40000 ALTER TABLE `user_enrollment` DISABLE KEYS */;
-INSERT INTO `user_enrollment` VALUES (1,29,'2024-11-19 11:13:47',NULL,NULL,NULL,NULL),(2,29,'2024-11-19 11:39:42',NULL,NULL,NULL,NULL),(3,29,'2024-11-19 11:40:52',NULL,NULL,NULL,NULL),(4,29,'2024-11-19 12:33:16',NULL,NULL,NULL,NULL);
+INSERT INTO `user_enrollment` VALUES (1,29,'2024-11-19 11:13:47',NULL,NULL,NULL,NULL),(2,29,'2024-11-19 11:39:42',NULL,NULL,NULL,NULL),(3,29,'2024-11-19 11:40:52',NULL,NULL,NULL,NULL),(4,29,'2024-11-19 12:33:16',NULL,NULL,NULL,NULL),(5,29,'2024-11-21 10:35:59',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `user_enrollment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1047,7 +1202,7 @@ CREATE TABLE `user_track` (
   `isActive` tinyint(1) DEFAULT '0',
   `timestamp` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1056,7 +1211,7 @@ CREATE TABLE `user_track` (
 
 LOCK TABLES `user_track` WRITE;
 /*!40000 ALTER TABLE `user_track` DISABLE KEYS */;
-INSERT INTO `user_track` VALUES (17,29,1,'2024-11-21 14:03:35');
+INSERT INTO `user_track` VALUES (17,29,1,'2024-11-27 16:56:23'),(18,30,1,'2024-11-27 13:24:29'),(19,31,1,'2024-11-27 12:45:53'),(20,32,1,'2024-11-27 12:49:19');
 /*!40000 ALTER TABLE `user_track` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1069,4 +1224,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-21 15:12:26
+-- Dump completed on 2024-11-28  8:43:33

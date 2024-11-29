@@ -89,8 +89,14 @@ import Banner from "./Component/Landingpage/Banner/Banner";
 import Competitivenavbar from "./Component/Drken/Competitivenavbar/Competitivenavbar";
 import Mytest from "./Component/Landingpage/Mytest/Mytest";
 import Enrolled from "./Component/Landingpage/Enrolled/Enrolled";
-import Bankingexams from "./Component/Landingpage/Bankingexams/Bankingexams";
-import Testpage from "./Component/User/Testpage/Testpage";
+import CourseBuying from "./Component/Landingpage/CourseBuying/CourseBuying";
+import BuyingPage from "./Component/Landingpage/BuyingPage/BuyingPage";
+import Purchased from "./Component/User/Purchased/Purchased";
+import Successpayment from "./Component/User/Successpayment/Successpayment";
+import Studentdashboard from "./Component/User/Studentdashboard/Studentdashboard";
+import Enrolledcourses from "./Component/Landingpage/Enrolledcourses/Enrolledcourses";
+import QuizPage from "./Component/Drken/QuizPage.js/QuizPage";
+import Score from "./Component/User/Score/Score";
 
 // import RichTextEditor from './Component/Instructor/Richtexteditor/Richtexteditor';
 
@@ -105,13 +111,28 @@ function App() {
           <Route path="/reset_password/:token" element={<ResetPassword />} />
           <Route path="/inv_register/:id" element={<InvitedRegister />} />
           <Route path="/business_register" element={<CompanyRegister />} />
+          <Route path="/std" element={<Studentdashboard/>}/>
           {/* <Route path="/" element={[<Menubar />, <Banner />, <Footer />]} /> */}
-<Route path="/banner" element={[<Competitivenavbar/>,<Banner/>]}/>
-<Route path="/mytest" element={[<Competitivenavbar/>,<Mytest/>]}/>
-<Route path="/enrolled" element={[<Competitivenavbar/>,<Enrolled/>]}/>
-<Route path="/exams" element={[<Competitivenavbar/>,<Bankingexams/>]}/>
-<Route path="/testpage" element={[<Competitivenavbar/>,<Testpage/>]}/>
-
+          <Route
+            path="/banner/:id"
+            element={[<Competitivenavbar />, <Banner />]}
+          />
+          <Route
+            path="/mytest/:id"
+            element={[<Competitivenavbar />, <Mytest />]}
+          />
+          <Route
+            path="/enrolled/:id"
+            element={[<Competitivenavbar />, <Enrolled />]}
+          />
+          <Route
+            path="/exams/:id/:sub"
+            element={[<Competitivenavbar />, <CourseBuying />]}
+          />
+          <Route
+            path="/exams/payment/:id/:course"
+            element={[<Competitivenavbar />, <BuyingPage />]}
+          />
           <Route
             path="/progress"
             element={[
@@ -132,7 +153,7 @@ function App() {
             ]}
           />
           <Route path="/course" element={<Contentmodule />} />
-
+<Route path="/en" element={[<Competitivenavbar />, <Enrolledcourses/>]}/>
           <Route
             path="/ongoing"
             element={[<Menubar />, <Coursemenubar />, <Ongoingclass />]}
@@ -155,9 +176,8 @@ function App() {
             <Route path="neft/:quantity" element={<NeftPayment />} />
             <Route path="notenroll" element={<Notenrolledfile />} />
             <Route path="courselist" element={<CourseList />} />
-
           </Route>
-
+<Route path="/purchased" element={<Purchased/>} />
           <Route
             path="/instructordashboard/:id*"
             element={<Dashboardinstructor />}
@@ -244,16 +264,21 @@ function App() {
           />
           <Route path="/user/:id/:courseid/mock/:quiz" element={<MockTest />} />
           <Route
-            path="/user/:id/:courseid/old-questions/:quiz" element={<OldQuestionTest />}/>
-          <Route path="/user/:id/quiz/:insertid" element={<QuizTest />} />
-          <Route path="/mp" element={<MapComponent />} />
+            path="/user/:id/:courseid/old-questions/:quiz"
+            element={<OldQuestionTest />}
+          />
 
+          <Route path="/mp" element={<MapComponent />} />
+<Route path="/successpayment" element={<Successpayment/>}/>
           <Route path="/userpart/:id/" element={<Dashboarduser />}>
             <Route path="dash/:courseid" element={<TestMock />} />
             <Route path="addsubmodule" element={<SubModule />} />
             <Route path=":courseid/practice/:quiz" element={<TestPractice />} />
-            <Route path=":courseid/mock/:quiz" element />
+            <Route path="quiz/:insertid" element={<QuizTest />} />
+            {/* <Route path=":courseid/mock/:quiz" element /> */}
           </Route>
+          <Route path="/q" element={[<Competitivenavbar />,<QuizPage/>]}/>
+          <Route path="score" element={[<Competitivenavbar />,<Score/>]}/>
         </Routes>
       </BrowserRouter>
     </div>

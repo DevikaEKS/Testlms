@@ -13,7 +13,7 @@ const Dashboardinstructor = () => {
 
   return (
     <div className="dashboard-container">
-      <Sidebaruser isOpen={isOpen} toggleSidebar={toggleSidebar} />
+      <Sidebarinstructor isOpen={isOpen} toggleSidebar={toggleSidebar} />
       <div className={`dashboard-content ${isOpen ? "expanded" : "collapsed"}`}>
         <Outlet />
       </div>

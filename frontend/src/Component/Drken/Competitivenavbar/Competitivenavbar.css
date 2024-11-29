@@ -1,5 +1,26 @@
-.navpart:hover{
+/* Default Navbar styling */
+.navpart {
+    color: #fff; /* Default text color (blue) */
+    text-decoration: none;
+    padding: 10px 20px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  /* Hover effect on navbar items */
+  .navpart:hover {
     background-color: white;
-    color: #291571 !important;
-}
+    color: #291571 !important; /* Text color changes to blue */
+  }
+  
+  /* Active link styling */
+  .navpart.active-link {
+    background-color: #291571;
+    color: white;
+  }
+  
+  /* Mobile and Desktop views for navbar items */
+  .navpart, .navbar-brand {
+    font-size: 1rem;
+  }
+  
   

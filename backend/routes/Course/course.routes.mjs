@@ -52,10 +52,10 @@ router.get("/:course/:module", getOtherModules);
 router.get("/moduleandenrollcount", getCountsModuleAndEnrollment);
 
 // Sub Module
-router.post("/addsubmodule",addSubmodule)
-router.get('/submodules/:courseid/:moduleid', getSubmodulesByCourseAndModule);
+router.post("/addsubmodule", addSubmodule);
+router.get("/submodules/:courseid/:moduleid", getSubmodulesByCourseAndModule);
 
-// Sidebar 
-router.get("/sidebar",getSidebarData)
+// Sidebar
+router.get("/sidebar", getSidebarData);
 
 export default router;

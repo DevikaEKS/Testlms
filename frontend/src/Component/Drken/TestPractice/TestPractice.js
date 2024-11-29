@@ -91,7 +91,7 @@ function TestPractice() {
       .then((res) => {
         if (res.data.message === "Data inserted successfully") {
           const insertId = res.data.result.insertId;
-          navigate(`/user/${id}/quiz/${insertId}`);
+          navigate(`/userpart/${id}/quiz/${insertId}`);
         } else {
           alert(res.data.message || "Error submitting data");
         }

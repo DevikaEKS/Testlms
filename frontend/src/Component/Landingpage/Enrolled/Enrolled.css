@@ -9,7 +9,7 @@
     justify-content: center;
     align-items: center;
     margin: auto;
-    box-shadow: 1px 2px 10px rgb(144, 183, 233);/* Center horizontally within the parent */
+    box-shadow: 1px 2px 10px rgb(144, 183, 233) !important;/* Center horizontally within the parent */
 }
   
 .exampart2 {
@@ -21,14 +21,14 @@
     justify-content: center;
     align-items: center;
     margin: auto; 
-    box-shadow: 1px 2px 10px rgb(144, 183, 233);
+    box-shadow: 1px 2px 10px rgb(144, 183, 233) !important;
 }
   
 .exampart2 img {
-    height: 90px;
-    width: 90px;
-    border-radius: 50%; /* Make the image circular */
-    object-fit: cover; /* Ensure the image fits within the circle */
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    object-fit: cover; 
 }
   
 .examnames{
@@ -44,3 +44,40 @@
     height: 100%; /* Full viewport height */
     background-color: #f5f5f5; /* Optional background color */
 }
+
+.exampart1{
+    box-shadow: 1px 2px 10px rgb(144, 183, 233);
+}
+
+.enrolledbt{
+    background-color: #12BE4E;
+    width: 80px;
+    color: #fff;
+    border-radius: 10px;
+}
+
+
+/* Hide the button by default */
+.enrolledbt {
+    display: none;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* Show the button when hovering over the parent container */
+  .exampartmain:hover .enrolledbt {
+    display: block !important;
+  }
+  
+  /* Hover effect for the button */
+  .enrolledbt:hover {
+    background-color: #0056b3;
+  }
+  
+  

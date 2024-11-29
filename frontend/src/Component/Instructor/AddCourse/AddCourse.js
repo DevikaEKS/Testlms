@@ -123,12 +123,12 @@ function AddCourse() {
   return (
     <div className="container-fluid p-0">
       <ToastContainer />
-      <h3 className="text-center mt-2 headinginstructor">Course Creation</h3>
+      <h3 className="text-center mt-2 headinginstructor">Exam Creation</h3>
       <div className="frmbg p-0 p-lg-5 h-100 my-3 rounded-3">
         <form className="bg-light rounded-2 p-3" onSubmit={handleSubmit}>
           <div className="form-group">
             <div className="form-group-inner">
-              <label htmlFor="courseFullName" className="labelcourse">Course Full Name</label>
+              <label htmlFor="courseFullName" className="labelcourse">Exam Full Name</label>
               <input
                 id="courseFullName"
                 name="courseFullName"
@@ -139,7 +139,7 @@ function AddCourse() {
           </div>
           <div className="form-group">
             <div className="form-group-inner">
-              <label htmlFor="courseShortName" className="labelcourse">Course Short Name</label>
+              <label htmlFor="courseShortName" className="labelcourse">Exam Short Name</label>
               <input
                 id="courseShortName"
                 name="courseShortName"
@@ -151,7 +151,7 @@ function AddCourse() {
 
           <div className="form-group">
             <div className="form-group-inner">
-              <label htmlFor="courseCategory" className="labelcourse">Course Category</label>
+              <label htmlFor="courseCategory" className="labelcourse">Exam Category</label>
               <select
                 id="courseCategory"
                 name="courseCategory"
@@ -159,7 +159,7 @@ function AddCourse() {
                 onChange={(e) => setSelectedCategoryId(e.target.value)} // Set single ID
                 value={selectedCategoryId || ""}
               >
-                <option value="">Select the course category</option>
+                <option value="">Select the Exam category</option>
                 {categories.map((category, i) => (
                   <option key={i} value={category.id}>
                     {category.name}
@@ -178,7 +178,7 @@ function AddCourse() {
 
           <div className="form-group">
             <div className="form-group-inner">
-              <label htmlFor="courseStartDate" className="labelcourse">Course Start Date</label>
+              <label htmlFor="courseStartDate" className="labelcourse">Exam Start Date</label>
               <input
                 id="courseStartDate"
                 name="courseStartDate"
@@ -189,7 +189,7 @@ function AddCourse() {
           </div>
           <div className="form-group">
             <div className="form-group-inner">
-              <label htmlFor="courseEndDate" className="labelcourse">Course End Date</label>
+              <label htmlFor="courseEndDate" className="labelcourse">Exam End Date</label>
               <input
                 id="courseEndDate"
                 name="courseEndDate"
@@ -200,7 +200,7 @@ function AddCourse() {
           </div>
           <div className="form-group">
             <div className="form-group-inner">
-              <label htmlFor="courseImage" className="labelcourse">Course Image</label>
+              <label htmlFor="courseImage" className="labelcourse">Exam Image</label>
               <input
                 id="courseImage"
                 name="courseImage"
@@ -213,7 +213,7 @@ function AddCourse() {
           </div>
           <div className="form-group">
             <div className="form-group-inner">
-              <label htmlFor="courseDescription" className="labelcourse">Course Description</label>
+              <label htmlFor="courseDescription" className="labelcourse">Exam Description</label>
               <textarea
                 id="courseDescription"
                 name="courseDescription"

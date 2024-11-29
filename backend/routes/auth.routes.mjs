@@ -4,6 +4,7 @@ const router = express.Router();
 import {
   checkToken,
   forgotPassword,
+  getCertificateDetail,
   invitedRegisterUser,
   login,
   logout,
@@ -17,10 +18,12 @@ router.post("/login", login);
 router.post("/logout", logout);
 router.get("/protected", checkToken);
 
-router.post("/invited_register/:id",invitedRegisterUser)
+router.post("/invited_register/:id", invitedRegisterUser);
 router.post("/business_register", registerBusiness);
 
-router.post("/forgot_password",forgotPassword)
-router.post("/reset_password",resetPassword)
+router.post("/forgot_password", forgotPassword);
+router.post("/reset_password", resetPassword);
+
+router.get("/type-of-certificate", getCertificateDetail);
 
 export default router;

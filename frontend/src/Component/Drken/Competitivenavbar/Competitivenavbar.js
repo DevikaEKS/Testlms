@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 // import loginimg from "../../../Asset/profile1.png";
 import Mainlogo from "../../Landingpage/Asset/mainlogo.png";
 import "./Competitivenavbar.css";
+
 function Competitivenavbar() {
   const [showSearch, setShowSearch] = useState(false);
+
+  const { id } = useParams();
 
   const toggleSearch = () => {
     setShowSearch((prev) => !prev);
@@ -16,8 +19,10 @@ function Competitivenavbar() {
   return (
     <Navbar expand="lg" className="navbarcontenttext py-4">
       <Container>
+    
         <Navbar.Brand as={NavLink} to="/" className="d-flex align-items-center">
-          <img src={Mainlogo} alt="Main Logo" className="logoken" />
+          {/* <img src={Mainlogo} alt="Main Logo" className="logoken" /> */}
+          <Link className="text-light text-decoration-none">CLMS</Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
@@ -25,24 +30,24 @@ function Competitivenavbar() {
           <Nav className="d-lg-none mx-auto">
             <Nav.Link
               as={NavLink}
-              to="/"
-              className="navpart px-3 py-2"
+              to={`/banner/${id}`}
+              className="navpart px-3"
               activeClassName="active-link"
             >
               Home
             </Nav.Link>
             <Nav.Link
               as={NavLink}
-              to="/my-test"
-              className="navpart px-3 py-2"
+              to={`/mytest/${id}`}
+              className="navpart px-3"
               activeClassName="active-link"
             >
               My Test
             </Nav.Link>
             <Nav.Link
               as={NavLink}
-              to="/enrolled"
-              className="navpart px-3 py-2"
+              to={`/enrolled/${id}`}
+              className="navpart px-3"
               activeClassName="active-link"
             >
               Enrolled
@@ -51,14 +56,16 @@ function Competitivenavbar() {
               as={NavLink}
               to=""
               className="navpart px-3"
-              activeClassName="active-link">
+              activeClassName="active-link"
+            >
               Notification
             </Nav.Link>
             <Nav.Link
               as={NavLink}
               to=""
               className="navpart px-3"
-              activeClassName="active-link" >
+              activeClassName="active-link"
+            >
               Profile
             </Nav.Link>
             {showSearch && (
@@ -85,21 +92,21 @@ function Competitivenavbar() {
           <Nav className="w-100 d-none d-lg-flex align-items-center justify-content-between">
             <div className="d-flex flex-grow-1 justify-content-center">
               <NavLink
-                to="/"
+                to={`/banner/${id}`}
                 className="navpart px-3"
                 activeClassName="active-link"
               >
                 Home
               </NavLink>
               <NavLink
-                to="/mytest"
+                to={`/mytest/${id}`}
                 className="navpart px-3"
                 activeClassName="active-link"
               >
                 My Test
               </NavLink>
               <NavLink
-                to="/enrolled"
+                to={`/enrolled/${id}`}
                 className="navpart px-3"
                 activeClassName="active-link"
               >
@@ -122,7 +129,7 @@ function Competitivenavbar() {
             <Nav.Link as={NavLink} to="/notifications" className="ms-3">
               <FontAwesomeIcon icon={faBell} />
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/profile" className="ms-3">
+            <Nav.Link as={NavLink} to="/" className="ms-3">
               <FontAwesomeIcon icon={faUser} />
             </Nav.Link>
           </Nav>

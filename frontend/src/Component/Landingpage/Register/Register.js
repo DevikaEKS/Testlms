@@ -13,9 +13,9 @@ function Registerpage() {
   const [phone, setPhone] = useState("");
   const [qualification, setQualification] = useState("");
   const [jobStatus, setJobStatus] = useState("");
-  const [otherProfession, setOtherProfession] = useState(""); 
+  const [otherProfession, setOtherProfession] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState(""); 
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +26,11 @@ function Registerpage() {
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState("");
-const[category,setCategory]=useState("");
+  const [category, setCategory] = useState("");
+
+  const [categories, setCategories] = useState([]); // Store the categories from API
+  const [selectedCategory, setSelectedCategory] = useState("");
+
   const handleCountryChange = (e) => {
     const countryCode = e.target.value;
     setSelectedCountry(countryCode);
@@ -46,6 +50,14 @@ const[category,setCategory]=useState("");
   // useEffect(() => {
   //   setFormData((prev) => ({ ...prev, city: selectedCity }));
   // }, [selectedCity]);
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}auth/type-of-certificate`)
+      .then((res) => {
+        setCategories(res.data.result);
+      });
+  }, []);
 
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
@@ -129,8 +141,9 @@ const[category,setCategory]=useState("");
       password,
       selectedCity,
       selectedCountry,
-      selectedState
-    }
+      selectedState,
+      selectedCategory
+    };
 
     try {
       setIsLoading(true);
@@ -282,23 +295,26 @@ const[category,setCategory]=useState("");
                       </select>
                     </div>
 
-
-
                     <div className="form-group">
-                      <label htmlFor="jobStatus" className="text-start">
+                      <label htmlFor="category" className="text-start">
                         Category
                       </label>
                       <select
                         id="category"
                         name="category"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
+                        value={selectedCategory}
+                        onChange={(e) => setSelectedCategory(e.target.value)}
                         className="form-control py-3"
                       >
                         <option value="">Select Category</option>
-                        <option value="Student">Competitive Exams</option>
-                        <option value="Freelancer">Global Certificate Exams</option>
-                       
+                        {categories.map((category) => (
+                          <option
+                            key={category.certificate_id}
+                            value={category.certificate_id}
+                          >
+                            {category.name}
+                          </option>
+                        ))}
                       </select>
                     </div>
 

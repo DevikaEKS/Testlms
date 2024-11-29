@@ -240,6 +240,7 @@ export const registerUser = (req, res) => {
     selectedCity,
     selectedCountry,
     selectedState,
+    selectedCategory
   } = req.body;
 
   if (!fullname || !email || !phone_no || !password) {
@@ -286,7 +287,7 @@ export const registerUser = (req, res) => {
 
             // Insert into User table
             db.query(
-              "INSERT INTO user (first_name, email, phone_no, password, qualification, profession,profile_image, country, state, city) VALUES (?,?, ?, ?, ?,?,?,?,?,?)",
+              "INSERT INTO user (first_name, email, phone_no, password, qualification, profession,profile_image, country, state, city, certificate_id) VALUES (?,?, ?, ?, ?,?,?,?,?,?,?)",
               [
                 fullname,
                 email,
@@ -298,6 +299,7 @@ export const registerUser = (req, res) => {
                 selectedCountry,
                 selectedState,
                 selectedCity,
+                selectedCategory
               ],
               (err, userResult) => {
                 if (err) {
@@ -312,8 +314,8 @@ export const registerUser = (req, res) => {
 
                 // Insert into Auth table
                 db.query(
-                  "INSERT INTO auth (email, password, user_id,role_id) VALUES (?, ?, ?,?)",
-                  [email, hashedPassword, userId, 4],
+                  "INSERT INTO auth (email, password, user_id,role_id, certificate_id) VALUES (?, ?, ?,?,?)",
+                  [email, hashedPassword, userId, 4, selectedCategory],
                   (err) => {
                     if (err) {
                       console.error(err);
@@ -387,31 +389,32 @@ export const registerUser = (req, res) => {
                             const mailOptions = {
                               from: "sivaranji5670@gmail.com",
                               to: email,
-                              subject: "Welcome to LMS - Dr Ken Spine Coach",
-                              text: `Hello ${fullname}, Thank you for registering with our LMS platform for the course "Dr Ken Spine Coach". We’re excited to have you with us! Best Regards, LMS Team`,
+                              subject: "Welcome to Testing Portal",
+                              text: `Hello ${fullname}, Thank you for registering with our Test platform. We’re excited to have you with us! Best Regards, LMS Team`,
                               html: `
                                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; background-color: #291571; border-radius: 10px; color: white;">
-                                  <h2 style="text-align: center; color: white;">Welcome to Dr Ken Spine Coach!</h2>
+                                  <h2 style="text-align: center; color: white;">Welcome to the Test LMS Portal!</h2>
                                   
                                   <p>Hello ${fullname},</p>
-                                  <p>Thank you for joining us at the LMS platform! We’re thrilled to have you on board for the <strong style="color: white;">Dr Ken Spine Coach</strong> course.</p>
-                            
+                                  <p>Thank you for joining us at the Test platform! We’re thrilled to have you on board.</p>
+                              
                                   <div style="padding: 15px; border: 1px solid #4CAF50; border-radius: 8px; margin-top: 10px; background-color: #291571;">
                                     <h3 style="color: #4CAF50; margin-bottom: 10px;">Getting Started</h3>
-                                    <p style="margin: 0; color: white;">To begin your journey, please log in and explore your course materials:</p>
+                                    <p style="margin: 0; color: white;">To begin your journey, please log in and explore your Exam materials:</p>
                                     <p style="margin: 0;"><a href="${process.env.DOMAIN}" style="color: #4CAF50; font-weight: bold;">Go to LMS Login</a></p>
                                   </div>
-                            
-                                  <p style="margin-top: 20px; color: white;">Once logged in, you’ll have access to all the resources and support you need to excel in the course.</p>
+                              
+                                  <p style="margin-top: 20px; color: white;">Once logged in, you’ll have access to all the resources and support you need to excel in the exam.</p>
                                   
                                   <p style="color: white;">If you have any questions or need assistance, feel free to reach out to our support team at <a href="mailto:support@yourwebsite.com" style="color: #4CAF50;">support@yourwebsite.com</a>.</p>
-                            
+                              
                                   <div style="border-top: 1px solid #4CAF50; margin-top: 20px; padding-top: 10px;">
-                                    <p style="font-size: 12px; color: white;">Best Regards,<br>LMS Team</p>
+                                    <p style="font-size: 12px; color: white;">Best Regards,<br>Test Portal Team</p>
                                   </div>
                                 </div>
                               `,
                             };
+                            
 
                             transporter.sendMail(mailOptions, (error) => {
                               if (error) {
@@ -1062,5 +1065,17 @@ export const resetPassword = (req, res) => {
         );
       });
     });
+  });
+};
+
+export const getCertificateDetail = (req, res) => {
+  const sql = `select * from type_of_certificate`;
+
+  db.query(sql,(err, result) => {
+    if (err) {
+      res.json({ error: "db query error" });
+    } else {
+      res.json({ result: result });
+    }
   });
 };

@@ -77,11 +77,8 @@ export function QuizTest() {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-sm-2">
-          <CourseSidebar />
-        </div>
         {/* <div className="col-lg-1"></div> */}
-        <div className="col-sm-10">
+        <div className="col-sm-12">
           <QuizPage />
         </div>
       </div>

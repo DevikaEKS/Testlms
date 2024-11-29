@@ -350,7 +350,7 @@ export const updateModule = (req, res) => {
   const moduleImagePath = moduleImage
     ? path.join("/uploads", moduleImage.filename)
     : null;
-  
+
   if (!moduleid) {
     return res.json({ error: "Module ID is required" });
   }
@@ -1370,11 +1370,9 @@ export const getSubmodulesByCourseAndModule = (req, res) => {
     }
 
     if (results.length === 0) {
-      return res
-        .status(404)
-        .json({
-          message: "No submodules found for the specified course and module.",
-        });
+      return res.status(404).json({
+        message: "No submodules found for the specified course and module.",
+      });
     }
 
     return res.status(200).json({
@@ -1402,3 +1400,5 @@ export const getSidebarData = (req, res) => {
     });
   });
 };
+
+// ----------------------------

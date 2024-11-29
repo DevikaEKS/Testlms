@@ -167,14 +167,7 @@ function CourseVideos() {
     }
   };
 
-  // const handleOptionChange = (event) => {
-  //   const selectedOption = event.target.value;
-  //   setSelectedOptions((prev) => ({
-  //     ...prev,
-  //     [currentIndex]: selectedOption,
-  //   }));
-  //   setAnsweredQuestions((prev) => new Set(prev).add(currentIndex));
-  // };
+
 
   const handleOptionChange = (questionId, subquestionId = null, event) => {
     const selectedOption = event.target.value;
@@ -195,12 +188,7 @@ function CourseVideos() {
       }
     });
 
-    // Mark the question as answered
-    // setAnsweredQuestions((prev) => {
-    //   const updatedSet = new Set(prev);
-    //   updatedSet.add(questionId); // Add only the main questionId to the answered set
-    //   return updatedSet;
-    // });
+
     setAnsweredQuestions((prev) => new Set(prev).add(currentIndex));
     console.log(answeredQuestions);
   };
@@ -280,10 +268,6 @@ function CourseVideos() {
       }
     });
 
-    // console.log(result);
-    // console.log(match);
-    // console.log(desc);
-    // console.log(check);
 
     // API submission
     axios
@@ -660,11 +644,7 @@ function CourseVideos() {
                     knowledge. They present key insights with the power to bring
                     about a positive shift in your life.
                   </p>
-                  <p>
-                    Picture this: acquiring a treasure trove of 100 exceptional
-                    points of wisdom about the spine—knowledge that empowers you
-                    to shape your destiny afresh each day henceforth.
-                  </p>
+                 
                   <p>
                     Know that these questions are composed with deep empathy and
                     with the greatest care, with your personal growth and
@@ -755,44 +735,6 @@ function CourseVideos() {
                     ) : content ? (
                       <div className="container quizpart m-1 p-3 quizparttext rounded-2">
                         {/* <div className="quizpart p-3 quizparttext">
-                          <h1 className="profoundhead my-4">
-                            To Me Testing Is A Profound Duty.
-                          </h1>
-                          <p>
-                            To me, the questions within a test are not mere
-                            inquiries; they are pivotal moments that spotlight
-                            transformative knowledge. They present key insights
-                            with the power to bring about a positive shift in
-                            your life.
-                          </p>
-                          <p>
-                            Picture this: acquiring a treasure trove of 100
-                            exceptional points of wisdom about the
-                            spine—knowledge that empowers you to shape your
-                            destiny afresh each day henceforth.
-                          </p>
-                          <p>
-                            Know that these questions are composed with deep
-                            empathy and with the greatest care, with your
-                            personal growth and enlightenment at their core.
-                            They are a testament to my dedication to your
-                            journey towards a brighter, more informed future.
-                          </p>
-                          <p>Please learn and enjoy each question!</p>
-                          <div className="d-flex justify-content-end"></div>
-                        </div>
-                        <div className="d-flex justify-content-end">
-                          <button
-                            style={{
-                              backgroundColor: "#291571",
-                              color: "white",
-                            }}
-                            className="btn my-4"
-                            onClick={handleAttempt}
-                          >
-                            Quiz Attempt
-                          </button>
-                        </div> */}
                         {/* Table displaying total questions and correct answers */}
                         <h4
                           className="summarytext my-3"

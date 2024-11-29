@@ -65,9 +65,15 @@ function Login() {
             toast.error("Invalid Email or password");
           } else if (res.data.message === "login success") {
             const { user, token } = res.data;
-            const { role_id, user_id, company_id, email } = user;
+            const { role_id, user_id, company_id, email, certificate_id } = user;
+            console.log(user);
             if (role_id === 4) {
-              navigate(`/banner`);
+              if(certificate_id == 2){
+              navigate(`/banner/${user_id}`);
+              }
+              else if(certificate_id == 1){
+                navigate(`/banner/${user_id}`);
+              }
             } else if (role_id === 5) {
               navigate(`/admindashboard/${company_id}/dashboard`);
             } else if (role_id === 2) {

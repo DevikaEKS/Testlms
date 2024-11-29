@@ -19,7 +19,7 @@ export function Payment() {
         console.log("Token is valid:", response.data);
       } catch (error) {
         console.error("Token verification error:", error);
-        navigate("/login");
+       
       }
     };
 
