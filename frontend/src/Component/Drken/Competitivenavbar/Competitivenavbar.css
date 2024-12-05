@@ -1,11 +1,17 @@
 /* Default Navbar styling */
 .navpart {
-    color: #fff; /* Default text color (blue) */
+    color: #fff; 
     text-decoration: none;
     padding: 10px 20px;
     transition: background-color 0.3s, color 0.3s;
   }
   
+  .navpart1 {
+    color: #fff; 
+    text-decoration: none !important;
+    padding: 10px 20px;
+    transition: background-color 0.3s, color 0.3s;
+  }
   /* Hover effect on navbar items */
   .navpart:hover {
     background-color: white;
@@ -24,3 +30,7 @@
   }
   
   
+.logoken{
+  height: 100px;
+}
+

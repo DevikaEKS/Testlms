@@ -3,6 +3,7 @@ import {
   addBulkQuestion,
   addQuestion,
   createQuiz,
+  createQuizAttempt,
   downloadSampleQuestionFormat,
   fetchQuizQuestions,
   getPracticeTestDifficulty,
@@ -10,10 +11,13 @@ import {
   getQuestionByModule,
   getQuestionsByModuleAndCourse,
   getQuestionsWithAnswers,
+  getQuizAttemptsByUserId,
   getQuizType,
+  getSampleQuestionsByCourseAndQuizType,
   practiceTestCreation,
   practiceTestGetQuestions,
   saveQuizAttempt,
+  storeSampleQuestionData,
   testCreation,
   updateQuestionByModule,
 } from "../../controller/Course/quiz.controller.mjs";
@@ -43,5 +47,12 @@ router.post("/practicetest", practiceTestCreation);
 
 router.get("/practicequestion/:id", practiceTestGetQuestions);
 router.get('/practicedifficulty/:id/:user_id',getPracticeTestDifficulty)
+
+router.post('/storesamplequestion',storeSampleQuestionData)
+router.get("/sample-past-papers/:courseid/:quiz_type_id", getSampleQuestionsByCourseAndQuizType);
+
+router.post("/quiz-attempts", createQuizAttempt);
+// Get quiz attempts by user ID
+router.get("/quiz-attempts/user/:user_id/:courseid/:quiz_type", getQuizAttemptsByUserId);
 
 export default router;

@@ -5,7 +5,6 @@ import RegisterPage from "./Component/Landingpage/Register/Register";
 import { Footer } from "./Component/Footer/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CourseDetail from "./Component/Admin/Coursedetail/Coursedetail";
-import Inprogress from "./Component/Student/Inprogresscourses/Inprogress";
 import Coursecompleted from "./Component/Student/Coursecompleted/Coursecompleted";
 import Coursemenubar from "./Component/Student/Coursemenubar/Coursemenubar";
 import Contentmodule from "./Component/Instructor/Contentmodule/Contentmodule";
@@ -97,6 +96,15 @@ import Studentdashboard from "./Component/User/Studentdashboard/Studentdashboard
 import Enrolledcourses from "./Component/Landingpage/Enrolledcourses/Enrolledcourses";
 import QuizPage from "./Component/Drken/QuizPage.js/QuizPage";
 import Score from "./Component/User/Score/Score";
+import SampleQuestionUpload from "./Component/Instructor/SampleQuestionUpload/SampleQuestionUpload";
+import TimerPage from "./Component/Landingpage/BuyingPage/TimerPage";
+import Testoverview from "./Component/User/Testoverview/Testoverview";
+import Termspage from "./Component/User/Termspage/Termspage";
+import Starttest from "./Component/User/Starttest/Starttest";
+// import Testdashboard from "./Component/User/Testdashboard/Testdashboard";
+// import Examspart from "./Component/User/Examspart/Examspart";
+// import Examsidepart from "./Component/User/Examsidpart/Examsidepart";
+
 
 // import RichTextEditor from './Component/Instructor/Richtexteditor/Richtexteditor';
 
@@ -111,7 +119,7 @@ function App() {
           <Route path="/reset_password/:token" element={<ResetPassword />} />
           <Route path="/inv_register/:id" element={<InvitedRegister />} />
           <Route path="/business_register" element={<CompanyRegister />} />
-          <Route path="/std" element={<Studentdashboard/>}/>
+          <Route path="/std" element={<Studentdashboard />} />
           {/* <Route path="/" element={[<Menubar />, <Banner />, <Footer />]} /> */}
           <Route
             path="/banner/:id"
@@ -123,25 +131,17 @@ function App() {
           />
           <Route
             path="/enrolled/:id"
-            element={[<Competitivenavbar />, <Enrolled />]}
-          />
+            element={[<Competitivenavbar />, <Enrolled />]}/>
           <Route
             path="/exams/:id/:sub"
-            element={[<Competitivenavbar />, <CourseBuying />]}
-          />
+            element={[<Competitivenavbar />, <CourseBuying />]}/>
           <Route
             path="/exams/payment/:id/:course"
-            element={[<Competitivenavbar />, <BuyingPage />]}
-          />
-          <Route
-            path="/progress"
-            element={[
-              <Menubar />,
-              <Coursemenubar />,
-              <Inprogress />,
-              <Footer />,
-            ]}
-          />
+            element={[<Competitivenavbar />, <BuyingPage />]}/>
+          <Route path="/timer/:id/:course/:quizTypeId" element={<TimerPage/>} />
+          <Route path="/quizattempt/:id/:course/:quiz_type" element={[<Competitivenavbar />, <QuizPage />]} />
+          <Route path="/score/:id/:course/:quiz_type" element={[<Competitivenavbar />, <Score />]} />
+         
 
           <Route
             path="/completed"
@@ -153,7 +153,10 @@ function App() {
             ]}
           />
           <Route path="/course" element={<Contentmodule />} />
-<Route path="/en" element={[<Competitivenavbar />, <Enrolledcourses/>]}/>
+          <Route
+            path="/en"
+            element={[<Competitivenavbar />, <Enrolledcourses />]}
+          />
           <Route
             path="/ongoing"
             element={[<Menubar />, <Coursemenubar />, <Ongoingclass />]}
@@ -177,7 +180,7 @@ function App() {
             <Route path="notenroll" element={<Notenrolledfile />} />
             <Route path="courselist" element={<CourseList />} />
           </Route>
-<Route path="/purchased" element={<Purchased/>} />
+          <Route path="/purchased" element={<Purchased />} />
           <Route
             path="/instructordashboard/:id*"
             element={<Dashboardinstructor />}
@@ -200,6 +203,7 @@ function App() {
             <Route path="category" element={<AddCategory />} />
             <Route path="coursecreation" element={<AddCourse />} />
             <Route path="coursecreation/:course" element={<UpdateCourse />} />
+            <Route path="samplequestionupload" element={<SampleQuestionUpload/>} />
           </Route>
           <Route path="/instructorsidebar" element={<Sidebarinstructor />} />
 
@@ -234,42 +238,29 @@ function App() {
           {/* <Route path="/quizquestions" element={<QuestionDisplay />} /> */}
           <Route
             path="/ken/:course/:module/:id"
-            element={[<DrmenubarUser />, <CourseVideos />]}
-          />
+            element={[<DrmenubarUser />, <CourseVideos />]} />
           <Route
             path="/ken/:course/:module/undefined"
             element={[<Drmenubar />, <CourseVideos />]}
           />
           {/* User Route */}
           <Route
-            path="/user/:id/profile"
-            element={[<DrmenubarUser />, <DashBoardProfile />]}
-          />
-          <Route
-            path="/user/:id/message"
-            element={[<DrmenubarUser />, <DashBoardMessage />]}
-          />
-          <Route
-            path="/user/:id/payment"
-            element={[<DrmenubarUser />, <DashBoardPayment />]}
-          />
+            path="/user/:id/profile" element={[<DrmenubarUser />, <DashBoardProfile />]}/>
+          <Route path="/user/:id/message" element={[<DrmenubarUser />, <DashBoardMessage />]}/>
+          <Route path="/user/:id/payment" element={[<DrmenubarUser />, <DashBoardPayment />]}/>
           <Route path="/user/:id/editprofile" element={<Edit />} />
-          <Route
-            path="/user/:id/dash/:courseid"
-            element={<CourseDashBoard />}
-          />
-          <Route
-            path="/user/:id/:courseid/practice/:quiz"
-            element={<PracticeTest />}
-          />
+          <Route path="/user/:id/dash/:courseid" element={<CourseDashBoard />}/>
+          <Route path="/user/:id/:courseid/practice/:quiz" element={<PracticeTest />}/>
           <Route path="/user/:id/:courseid/mock/:quiz" element={<MockTest />} />
-          <Route
-            path="/user/:id/:courseid/old-questions/:quiz"
-            element={<OldQuestionTest />}
-          />
+          <Route path="/user/:id/:courseid/old-questions/:quiz" element={<OldQuestionTest />} />
+
+
+          {/* <Route path="/testpart/" element={<Testdashboard/>}> */}
+          {/* <Route path="examspart" element={<Examspart/>}/> */}
+          {/* </Route> */}
 
           <Route path="/mp" element={<MapComponent />} />
-<Route path="/successpayment" element={<Successpayment/>}/>
+          <Route path="/successpayment" element={<Successpayment />} />
           <Route path="/userpart/:id/" element={<Dashboarduser />}>
             <Route path="dash/:courseid" element={<TestMock />} />
             <Route path="addsubmodule" element={<SubModule />} />
@@ -277,8 +268,9 @@ function App() {
             <Route path="quiz/:insertid" element={<QuizTest />} />
             {/* <Route path=":courseid/mock/:quiz" element /> */}
           </Route>
-          <Route path="/q" element={[<Competitivenavbar />,<QuizPage/>]}/>
-          <Route path="score" element={[<Competitivenavbar />,<Score/>]}/>
+<Route path="/testoverview" element={[<Competitivenavbar/>,<Testoverview/>]}/>
+<Route path="/terms/:id" element={[<Competitivenavbar/>,<Termspage/>]}/>
+<Route path="/starttest/:id" element={[<Competitivenavbar/>,<Starttest/>]}/>
         </Routes>
       </BrowserRouter>
     </div>

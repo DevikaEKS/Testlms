@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebarinstructor from "../Sidebarinstructor/Sidebarinstructor";
 import "./Dashboardinstructor.css";
-import Sidebaruser from "../../Drken/Sidebaruser/Sidebaruser";
-
 const Dashboardinstructor = () => {
   const [isOpen, setIsOpen] = useState(false);
 

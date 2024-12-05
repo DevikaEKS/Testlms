@@ -1,9 +1,0 @@
-.orangebtn{
-    background-color: orange;
-    color: white;
-  }
-  .orangebtn:hover{
-    background-color: orange;
-    color: white;
-    transform: scale(1.1,1.1);
-  }

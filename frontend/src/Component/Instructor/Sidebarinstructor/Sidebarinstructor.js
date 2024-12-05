@@ -12,6 +12,8 @@ import {
   faPowerOff,
   faLayerGroup,
   faFileLines,
+  faFileArrowDown,
+  faFileArchive,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -67,7 +69,7 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
 
   return (
     <motion.div
-      className="sidebar"
+      className="sidebar "
       initial={false}
       animate={isOpen ? "open" : "closed"}
       variants={sidebarVariants}
@@ -82,7 +84,7 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
             to={`/instructordashboard/${id}/courselist`}
             className="d-flex"
           >
-            <FontAwesomeIcon icon={faHome} className="mx-1 text-light mt-1" />
+            <FontAwesomeIcon icon={faHome} className="mx-1 text-light" />
             <motion.span
               variants={linkVariants}
               className="text ms-1 text-light"
@@ -99,7 +101,7 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
           >
             <FontAwesomeIcon
               icon={faLayerGroup}
-              className="mx-1 text-light mt-1"
+              className="mx-1 text-light"
             />
             <motion.span
               variants={linkVariants}
@@ -120,7 +122,7 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
               variants={linkVariants}
               className="text-white text-decoration-none ms-1"
             >
-              Add Courses
+              Add Exams
             </motion.span>
           </Link>
         </li>
@@ -129,13 +131,13 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
             style={{ textDecoration: "none" }}
             // to={`/instructordashboard/${id}/coursemodule`}
             to={`/instructordashboard/${id}/addmodule`}
-            className="d-flex"
-          >
-            <FontAwesomeIcon icon={faFileLines} className="mx-1 text-light mt-1" />
+            className="d-flex">
+            <FontAwesomeIcon
+              icon={faFileArchive}
+              className="mx-1 text-light"/>
             <motion.span
               variants={linkVariants}
-              className="text ms-1 text-light"
-            >
+              className="text ms-1 text-light">
               Module
             </motion.span>
           </Link>
@@ -145,13 +147,13 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
             style={{ textDecoration: "none" }}
             // to={`/instructordashboard/${id}/coursemodule`}
             to={`/instructordashboard/${id}/addsubmodule`}
-            className="d-flex"
-          >
-            <FontAwesomeIcon icon={faFileLines} className="mx-1 text-light mt-1" />
+            className="d-flex">
+            <FontAwesomeIcon
+              icon={faFileLines}
+              className="mx-1 text-light"/>
             <motion.span
               variants={linkVariants}
-              className="text ms-1 text-light"
-            >
+              className="text ms-1 text-light">
               Sub Module
             </motion.span>
           </Link>
@@ -177,12 +179,30 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
         <li>
           <Link
             style={{ textDecoration: "none" }}
+            to={`/instructordashboard/${id}/samplequestionupload`}
+            className="d-flex"
+          >
+            <FontAwesomeIcon
+              icon={faFileArrowDown}
+              className="mx-1 text-light"
+            />
+            <motion.span
+              variants={linkVariants}
+              className="text ms-1 text-light"
+            >
+             Sample Quiz
+            </motion.span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            style={{ textDecoration: "none" }}
             to={`/instructordashboard/${id}/addquestion`}
             className="d-flex"
           >
             <FontAwesomeIcon
               icon={faLightbulb}
-              className="mx-1 text-light mt-1"
+              className="mx-1 text-light"
             />
             <motion.span
               variants={linkVariants}
@@ -198,7 +218,7 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
             to={`/instructordashboard/${id}/questionbank`}
             className="d-flex"
           >
-            <FontAwesomeIcon icon={faBook} className="mx-1 text-light mt-1" />
+            <FontAwesomeIcon icon={faBook} className="mx-1 text-light" />
             <motion.span
               variants={linkVariants}
               className="text ms-1 text-light"
@@ -222,13 +242,6 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
             </motion.span>
           </Link>
         </li>
-
-
-
-
-
-
-
         <li>
           <Link
             style={{ textDecoration: "none" }}
@@ -237,7 +250,7 @@ function Sidebarinstructor({ isOpen, toggleSidebar }) {
           >
             <FontAwesomeIcon
               icon={faPowerOff}
-              className="mx-1 text-light mt-1"
+              className="mx-1 text-light"
             />
             <motion.span
               variants={linkVariants}

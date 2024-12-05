@@ -8,16 +8,23 @@
 }
 
 .regpart {
-  background-image: url("../../../Asset/loginbg.jpg");
+  background-image: url("../Asset/loginbg.png");
   height: 100% !important;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-
+.regbtn{
+  background-color: #291571;
+  color: #fff;
+  border-radius: 20px;
+}
 .formcontainers {
   max-width: 600px !important;
   padding: 20px;
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
+  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
+  background-color: transparent !important; /* Optional shadow */
 }
 
 .register-card {
@@ -40,7 +47,9 @@
   font-size: 24px;
   text-align: center;
 }
-
+.signuptxt{
+  color: #291571;
+}
 .form-group label {
   display: block;
   margin-bottom: 8px;
@@ -166,6 +175,6 @@
 @media (min-width: 992px) {
   .login-image1 {
     width: 50vw; /* Half of the screen width */
-    height: 170vh; /* Full height */
+    height: 100%; /* Full height */
   }
 }

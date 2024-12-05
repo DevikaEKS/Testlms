@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./CompanyRegister.css";
 import { Link } from "react-router-dom";
-import loginim from "../../../Asset/logimg.png";
+// import loginim from "../../../Asset/logimg.png";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import logim from "../Asset/usericon.png";
 function CompanyRegister() {
   const [formData, setFormData] = useState({
     companyName: "",
@@ -22,10 +23,11 @@ function CompanyRegister() {
   const [errors, setErrors] = useState({});
   const emailPattern = /^[a-z][a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const phnovalidate = /^[6-9][0-9]{9}$/;
-  const fullnamePattern = /^[a-zA-Z0-9\s]{2,}$/; // At least 2 characters and only letters and spaces
-  const companysizepattern = /^[0-9]+$/; // Only numbers for company size
-  const zipcodePattern = /^[0-9]{5,10}$/; // Assuming US zip code format (5-10 digits)
+  const fullnamePattern = /^[a-zA-Z0-9\s]{2,}$/; 
+  const companysizepattern = /^[0-9]+$/; 
+  const zipcodePattern = /^[0-9]{5,10}$/; 
   const companytypepattern = /^[a-zA-Z\s]{2,}$/;
+
 
   // Handle input changes
   const handleChange = (e) => {
@@ -34,6 +36,7 @@ function CompanyRegister() {
       [e.target.name]: e.target.value,
     });
   };
+
 
   // Validate form inputs
   const validate = () => {
@@ -61,12 +64,7 @@ function CompanyRegister() {
         "Invalid SPOC name. Only letters and spaces are allowed, minimum 2 characters.";
       isValid = false;
     }
-    // if (!formData.spocEmail){
-    //   formErrors.spocEmail = "SPOC Email is required";
-    // } else if (!emailPattern.test(spocEmail)) {
-    //   formErrors.spocEmail = "Invalid SPOC email format.";
-    //   isValid = false;
-    // }
+  
 
     if (!formData.spocEmail) {
       formErrors.spocEmail = "SPOC Email is required";
@@ -166,108 +164,117 @@ function CompanyRegister() {
 
   return (
     <div className="container-fluid regpart">
-    <div className="d-flex flex-column justify-content-center align-items-center ">
-       <h2 className="text-center py-2 text-light">Sign Up</h2>
+    <div className="d-flex flex-column justify-content-end align-items-end ">  
     <div className="container formcontainers p-0 m-0">
       <div className="row p-3 mx-auto"> 
-        <div className="col-sm-12">
+        <div className="text-center">
+      
+      <img src={logim} alt="login" style={{height:"40px",width:"40px"}}/>
+      <h2 className="text-center py-2 signuptxt">Sign Up</h2>
+      </div>
+        <div className="col-sm-12 ">
           <p className="logpara text-center">How can we help you today?</p>
           <form onSubmit={handleSubmit}>
             <div className="row">
               <div className="col-lg-6">
                 <div className="form-group">
-                  <label htmlFor="companyName" className="text-start">
+                  {/* <label htmlFor="companyName" className="text-start">
                     Company Name
-                  </label>
+                  </label> */}
                   <input
                     type="text"
                     name="companyName"
                     id="companyName"
                     value={formData.companyName}
                     onChange={handleChange}
+                     placeholder="Enter Company name"
                   />
                   {errors.companyName && (
-                    <p className="error-text text-start">
+                    <p className="error-text text-start ps-2">
                       {errors.companyName}
                     </p>
                   )}
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="companyEmail" className="text-start">
+                  {/* <label htmlFor="companyEmail" className="text-start">
                     Company Email
-                  </label>
+                  </label> */}
                   <input
                     type="email"
                     name="companyEmail"
                     id="companyEmail"
                     value={formData.companyEmail}
                     onChange={handleChange}
-                    placeholder="Enter your company email"
+                    placeholder="Enter Company email"
                   />
                   {errors.companyEmail && (
-                    <p className="error-text text-start">
+                    <p className="error-text text-start ps-2">
                       {errors.companyEmail}
                     </p>
                   )}
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="country" className="text-start">
+                  {/* <label htmlFor="country" className="text-start">
                     Country
-                  </label>
+                  </label> */}
                   <input
                     type="text"
                     name="country"
                     id="country"
                     value={formData.country}
                     onChange={handleChange}
+                     placeholder="Enter your country"
                   />
                   <p className="error-text text-start">{errors.country}</p>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="zipcode" className="text-start">
+                  {/* <label htmlFor="zipcode" className="text-start">
                     Zipcode
-                  </label>
+                  </label> */}
                   <input
                     type="text"
                     name="zipcode"
                     id="zipcode"
                     value={formData.zipcode}
                     onChange={handleChange}
+                     placeholder="Enter the Zipcode"
                   />
                   <p className="error-text text-start">{errors.zipcode}</p>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="companyPhone" className="text-start">
+                  {/* <label htmlFor="companyPhone" className="text-start">
                     Company Phone Number
-                  </label>
+                  </label> */}
                   <input
                     type="text"
                     name="companyPhone"
                     id="companyPhone"
                     value={formData.companyPhone}
                     onChange={handleChange}
+                     placeholder="Enter Company PhNumber"
                   />
                   {errors.companyPhone && (
-                    <p className="error-text text-start">
+                    <p className="error-text text-start ps-2">
                       {errors.companyPhone}
                     </p>
                   )}
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="spocName" className="text-start">
+                  {/* <label htmlFor="spocName" className="text-start">
                     SPOC Name
-                  </label>
+                  </label> */}
                   <input
                     type="text"
                     name="spocName"
                     id="spocName"
                     value={formData.spocName}
                     onChange={handleChange}
+                     placeholder="Enter the SPOC Name"
                   />
                   {errors.spocName && (
                     <p className="error-text text-start">{errors.spocName}</p>
@@ -276,77 +283,81 @@ function CompanyRegister() {
               </div>
               <div className="col-lg-6">
                 <div className="form-group">
-                  <label htmlFor="spocEmail" className="text-start">
+                  {/* <label htmlFor="spocEmail" className="text-start">
                     SPOC Email
-                  </label>
+                  </label> */}
                   <input
                     type="email"
                     name="spocEmail"
                     id="spocEmail"
                     value={formData.spocEmail}
                     onChange={handleChange}
+                     placeholder="Enter the SPOC Email"
                   />
                   {errors.spocEmail && (
-                    <p className="error-text text-start">{errors.spocEmail}</p>
+                    <p className="error-text text-start ps-2">{errors.spocEmail}</p>
                   )}
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="spocPhone" className="text-start">
+                  {/* <label htmlFor="spocPhone" className="text-start">
                     SPOC Phone Number
-                  </label>
+                  </label> */}
                   <input
                     type="text"
                     name="spocPhone"
                     id="spocPhone"
                     value={formData.spocPhone}
                     onChange={handleChange}
+                     placeholder="Enter SPOC Phone Number"
                   />
                   {errors.spocPhone && (
-                    <p className="error-text text-start">{errors.spocPhone}</p>
+                    <p className="error-text text-start ps-2">{errors.spocPhone}</p>
                   )}
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="companySize" className="text-start">
+                  {/* <label htmlFor="companySize" className="text-start">
                     Company Size
-                  </label>
+                  </label> */}
                   <input
                     type="text"
                     name="companySize"
                     id="companySize"
                     value={formData.companySize}
                     onChange={handleChange}
+                     placeholder="Enter Company size"
                   />
                   {errors.companySize && (
-                    <p className="error-text text-start">
+                    <p className="error-text text-start ps-2">
                       {errors.companySize}
                     </p>
                   )}
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="companyType" className="text-start">
+                  {/* <label htmlFor="companyType" className="text-start">
                     Company Type
-                  </label>
+                  </label> */}
                   <input
                     type="text"
                     name="companyType"
                     id="companyType"
                     value={formData.companyType}
                     onChange={handleChange}
+                     placeholder="Enter Company type"
                   />
                   {errors.companyType && (
-                    <p className="error-text text-start">
+                    <p className="error-text text-start ps-2">
                       {errors.companyType}
                     </p>
                   )}
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="password" className="text-start">
+                  {/* <label htmlFor="password" className="text-start">
                     Password
-                  </label>
+                  </label> */}
                   {/* <div className="d-flex">
                     <input
                       type={showPassword ? "text" : "password"} 
@@ -371,8 +382,8 @@ function CompanyRegister() {
         id="password"
         value={formData.password}
         onChange={handleChange}
-        style={{ paddingRight: "30px" }} // Add padding for icon space
-      />
+        style={{ paddingRight: "30px" }} 
+        placeholder="Enter the password"/>
       <span
         onClick={() => setShowPassword(!showPassword)} // Toggle password visibility
         style={{
@@ -393,7 +404,7 @@ function CompanyRegister() {
                 </div>
 
                 <div className="d-flex justify-content-center">
-                  <button type="submit" className="btn btn-primary my-4">
+                  <button type="submit" className="regbtn my-4 px-5 py-2">
                     Register
                   </button>
                 </div>

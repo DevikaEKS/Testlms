@@ -82,12 +82,13 @@ function SubModule() {
   return (
     <div className="container-fluid">
       <ToastContainer />
-      <h3 className="text-center my-2 headinginstructor">Add Module</h3>
+      <h3 className="text-center my-2 headinginstructor">Add Sub Module</h3>
       <div className="form-group">
+        <div className="form-group-inner">
         <label htmlFor="courseSelect">Select Course</label>
         <select
           id="courseSelect"
-          className="form-control"
+          className="form-control fc1"
           value={courseid}
           onChange={handleCourseChange}
         >
@@ -101,13 +102,14 @@ function SubModule() {
           ))}
         </select>
       </div>
-
+      </div>
       {modules.length > 0 && (
         <div className="form-group mt-3">
+          <div className="form-group-inner">
           <label htmlFor="moduleSelect">Select Module</label>
           <select
             id="moduleSelect"
-            className="form-control"
+            className="form-control fc1"
             value={moduleid}
             onChange={handleModuleChange}
           >
@@ -121,19 +123,22 @@ function SubModule() {
             ))}
           </select>
         </div>
+        </div>
       )}
 
       {moduleid > 0 && (
         <div className="form-group mt-3">
+          <div className="form-group-inner">
           <label htmlFor="submoduleInput">Submodule Name</label>
           <input
             type="text"
             id="submoduleInput"
-            className="form-control"
+            className="form-control fc1"
             value={submodulename}
             onChange={handleSubmoduleNameChange}
             placeholder="Enter submodule name"
           />
+        </div>
         </div>
       )}
 

@@ -269,7 +269,8 @@ function UpdateCourse() {
                 name="courseImage"
                 type="file"
                 className="form-control"
-                accept=".jpg, .jpeg"
+                // accept=".jpg, .jpeg, .png"
+                accept="image/*"
                 required
               />
             </div>

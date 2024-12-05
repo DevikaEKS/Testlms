@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import "./BuyingPage.css";
 import axios from "axios";
 import coins from "../Asset/coins.png"; // Ensure the correct path for the coin image
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function BuyingPage() {
   const [content, setContent] = useState([]); // State to store the API data
   const [selectedQuizzes, setSelectedQuizzes] = useState([]); // Track selected quizzes
   const [totalPrice, setTotalPrice] = useState(0); // Track the total price
   const [isEnrolled, setIsEnrolled] = useState(false); // State to track if the user has clicked Enroll
-  const nav=useNavigate()
+  const navigate = useNavigate();
+
+  const { id, course } = useParams();
+
   useEffect(() => {
     // Fetch the quiz types from the API
     axios
@@ -21,6 +24,20 @@ function BuyingPage() {
         console.error("Error fetching data:", error); // Handle errors
       });
   }, []);
+
+  // Function to handle Sample Test button click
+  const handleSampleTestClick = (quizTypeId) => {
+    navigate(`/quizattempt/${id}/${course}/${quizTypeId}`); 
+  };
+  
+
+  // const handleSampleTestClick = (quizTypeId) => {
+  //   // navigate(`/timer/${id}/${course}/${quizTypeId}`); 
+  //   navigate(`/terms/${id}`); 
+  // };
+  
+
+
 
   // Handler for checkbox change
   const handleCheckboxChange = (quizId, isChecked, type) => {
@@ -54,19 +71,17 @@ function BuyingPage() {
   // Handler for Enroll button click
   const handleEnrollClick = () => {
     if (selectedQuizzes.length > 0) {
-      setIsEnrolled(true);
-     
-       // Set the Enrolled state to true when button is clicked
+      setIsEnrolled(true); // Set the Enrolled state to true when button is clicked
     } else {
       alert("Please select at least one quiz to enroll.");
     }
-   
   };
 
-
-  const handlepurchase=()=>{
-    nav("/purchased")
-  }
+  // Navigate to purchased page
+  const handlePurchase = () => {
+    // navigate("/purchased");
+    navigate(`/register`); 
+  };
 
   return (
     <div className="container py-4 majortest">
@@ -78,10 +93,13 @@ function BuyingPage() {
                 {/* Dynamically render quiz type names */}
                 <td className="fw-bold">{item.quiz_type_name}</td>
                 <td>
-                  <Link to="/q"><button className="testbutton paybutton">Sample Test</button></Link>
-                  
+                  <button
+                    className="testbutton paybutton"
+                    onClick={() => handleSampleTestClick(item.quiz_type_id)}>
+                    Sample Test
+                  </button>
                 </td>
-                
+
                 {/* First row: 5 Years and 10 Years checkboxes */}
                 {index === 0 && (
                   <>
@@ -90,10 +108,17 @@ function BuyingPage() {
                         type="checkbox"
                         id={`fiveYears-${item.quiz_type_id}`}
                         onChange={(e) =>
-                          handleCheckboxChange(item.quiz_type_id, e.target.checked, "year")
+                          handleCheckboxChange(
+                            item.quiz_type_id,
+                            e.target.checked,
+                            "year"
+                          )
                         }
                       />
-                      <label htmlFor={`fiveYears-${item.quiz_type_id}`} className="ms-2">
+                      <label
+                        htmlFor={`fiveYears-${item.quiz_type_id}`}
+                        className="ms-2"
+                      >
                         5 Years
                       </label>
                     </td>
@@ -102,10 +127,17 @@ function BuyingPage() {
                         type="checkbox"
                         id={`tenYears-${item.quiz_type_id}`}
                         onChange={(e) =>
-                          handleCheckboxChange(item.quiz_type_id, e.target.checked, "year")
+                          handleCheckboxChange(
+                            item.quiz_type_id,
+                            e.target.checked,
+                            "year"
+                          )
                         }
                       />
-                      <label htmlFor={`tenYears-${item.quiz_type_id}`} className="ms-2">
+                      <label
+                        htmlFor={`tenYears-${item.quiz_type_id}`}
+                        className="ms-2"
+                      >
                         10 Years
                       </label>
                     </td>
@@ -120,11 +152,18 @@ function BuyingPage() {
                         type="checkbox"
                         id={`test1-${item.quiz_type_id}`}
                         onChange={(e) =>
-                          handleCheckboxChange(item.quiz_type_id, e.target.checked, "test")
+                          handleCheckboxChange(
+                            item.quiz_type_id,
+                            e.target.checked,
+                            "test"
+                          )
                         }
                       />
-                      <label htmlFor={`test1-${item.quiz_type_id}`} className="ms-2">
-                        10 Test 
+                      <label
+                        htmlFor={`test1-${item.quiz_type_id}`}
+                        className="ms-2"
+                      >
+                        10 Test
                       </label>
                     </td>
                     <td>
@@ -132,24 +171,29 @@ function BuyingPage() {
                         type="checkbox"
                         id={`test2-${item.quiz_type_id}`}
                         onChange={(e) =>
-                          handleCheckboxChange(item.quiz_type_id, e.target.checked, "test")
+                          handleCheckboxChange(
+                            item.quiz_type_id,
+                            e.target.checked,
+                            "test"
+                          )
                         }
                       />
-                      <label htmlFor={`test2-${item.quiz_type_id}`} className="ms-2">
-                        50 Test 
+                      <label
+                        htmlFor={`test2-${item.quiz_type_id}`}
+                        className="ms-2"
+                      >
+                        50 Test
                       </label>
                     </td>
                   </>
                 )}
 
                 {/* Third row (Empty or non-functional) */}
-                {index === 2 && (
-                  <td colSpan="2"></td>
-                )}
+                {index === 2 && <td colSpan="2"></td>}
 
                 <td>
                   <button
-                    className="enroll-btn  d-flex align-items-center"
+                    className="enroll-btn d-flex align-items-center"
                     onClick={handleEnrollClick}
                   >
                     <img src={coins} alt="Coins" className="me-2" />
@@ -160,6 +204,7 @@ function BuyingPage() {
             ))}
           </tbody>
         </table>
+
         {/* Purchase Section */}
         <div className="purchase-section mt-4">
           {isEnrolled && totalPrice > 0 && (
@@ -168,7 +213,10 @@ function BuyingPage() {
               <span className="fs-5 fw-bold">Rs. {totalPrice}</span>
             </div>
           )}
-          <button className="purchase-btn paybutton mt-3" onClick={handlepurchase}>
+          <button
+            className="purchase-btn paybutton mt-3"
+            onClick={handlePurchase}
+          >
             PURCHASE
           </button>
         </div>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./Banner.css";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Banner.css";
 
 function Banner() {
   const [certificateId, setCertificateId] = useState();
-  const [categories, setCategories] = useState([]); // State to store the categories
+  const [categories, setCategories] = useState([]);
   const { id } = useParams(); // Get user ID from URL params
   const navigate = useNavigate(); // To handle page navigation
 
@@ -45,30 +45,31 @@ function Banner() {
   return (
     <div className="bannerpage">
       <div className="container m-0" id="sapbanner">
-        <div className="row py-5">
+        <div className="row py-5 ">
           {categories.map((category) => (
             <div
-              className="col-sm-12 col-md-3"
+              className="col-sm-12 col-md-3 mb-4"
               key={category.course_category_id}
             >
-              <div className="exampartmain d-flex justify-content-center align-items-center bg-light" onClick={() => handleEnroll(category.course_category_id)} >
+              <div
+                className="exampartmain d-flex justify-content-center align-items-center bg-light"
+                onClick={() => handleEnroll(category.course_category_id)}
+              >
                 <div className="exampart1 d-flex justify-content-center align-items-center bg-light">
                   {/* Display the category image */}
                   <img
                     src={category.image}
                     alt={category.course_category_name}
-                    className="img-fluid"
+                    // className="img-fluid"
+                    // style={{height:"40px",width:"50px"}}
+                    
                   />
                 </div>
-              </div>
-              <div className="d-flex justify-content-center">
-             
               </div>
               {/* Display the category name */}
               <p className="text-center py-2 examnames">
                 {category.course_category_name}
               </p>
-              
             </div>
           ))}
         </div>

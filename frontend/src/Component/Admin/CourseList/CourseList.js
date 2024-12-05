@@ -50,7 +50,7 @@ function CourseList() {
 
   return (
     <div className="courselist-container">
-      <h3 className="heading-center">Course Overview</h3>
+      <h3 className="headinginstructor">Course Overview</h3>
 
       <div className="course-cards-container">
         {course.map((e, index) => (

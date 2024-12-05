@@ -1271,7 +1271,6 @@ export const practiceTestGetQuestions = (req, res) => {
   });
 };
 
-
 export const getPracticeTestDifficulty = (req, res) => {
   const { id, user_id } = req.params; // The `id` from the `practice_test` table, 
 
@@ -1304,3 +1303,208 @@ export const getPracticeTestDifficulty = (req, res) => {
     });
   });
 };
+
+export const storeSampleQuestionData = (req, res) => {
+  const { courseId, questionType, question, options, correctOption, year } = req.body;
+
+  // Validate request data
+  if (!courseId || !questionType || !question || !options || !correctOption) {
+    return res.json({ message: "All fields are required" });
+  }
+
+  // Map questionType to the respective table
+  let tableName = "";
+  let queryParams = [question, JSON.stringify(options), correctOption, courseId, "multiple_choice"];
+  let query = "";
+
+  if (questionType === "1") {
+    tableName = "sample_past_paper_text";
+    // Include 'year' field in the query only for questionType 1 (sample_past_paper_text)
+    if (!year) {
+      return res.json({ message: "Year field is required for past paper questions" });
+    }
+    query = `
+      INSERT INTO ${tableName} (text, \`option\`, correct_answer, courseid, question_type, year)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `;
+    queryParams.push(year);
+  } else if (questionType === "2") {
+    tableName = "sample_mock_test_text";
+    query = `
+      INSERT INTO ${tableName} (text, \`option\`, correct_answer, courseid, question_type)
+      VALUES (?, ?, ?, ?, ?)
+    `;
+  } else if (questionType === "3") {
+    tableName = "sample_module_practice_text";
+    query = `
+      INSERT INTO ${tableName} (text, \`option\`, correct_answer, courseid, question_type)
+      VALUES (?, ?, ?, ?, ?)
+    `;
+  } else {
+    return res.json({ message: "Invalid questionType" });
+  }
+
+  // Insert data into the database
+  db.query(query, queryParams, (error, results) => {
+    if (error) {
+      console.error("Error inserting data:", error);
+      return res.json({ message: "Database error", error });
+    }
+    res.json({
+      message: "Data successfully stored",
+      data: {
+        id: results.insertId,
+        courseId,
+        questionType,
+        question,
+        options,
+        correctOption,
+        year: questionType === "1" ? year : undefined, // Include year only for questionType 1
+      },
+    });
+  });
+};
+
+export const getSampleQuestionsByCourseAndQuizType = (req, res) => {
+  const { courseid, quiz_type_id } = req.params;
+
+  // Validate request parameters
+  if (!courseid || !quiz_type_id) {
+    return res.json({ message: "courseid and quiz_type_id are required" });
+  }
+
+  // Map quiz_type_id to the respective table
+  let tableName = "";
+  if (quiz_type_id === "1") {
+    tableName = "sample_past_paper_text";
+  } else if (quiz_type_id === "2") {
+    tableName = "sample_mock_test_text";
+  } else if (quiz_type_id === "3") {
+    tableName = "sample_module_practice_text";
+  } else {
+    return res.json({ message: "Invalid quiz_type_id" });
+  }
+
+  // Query to fetch rows by courseid and the corresponding table
+  const query = `
+    SELECT * 
+    FROM ${tableName}
+    WHERE courseid = ?
+  `;
+
+  db.query(query, [courseid], (error, results) => {
+    if (error) {
+      console.error("Error fetching data:", error);
+      return res.json({ message: "Database error", error });
+    }
+
+    if (results.length === 0) {
+      return res.json({ message: `No data found in ${tableName} for the given courseid` });
+    }
+
+    res.json({
+      message: "Data retrieved successfully",
+      data: results,
+    });
+  });
+};
+
+
+export const createQuizAttempt = (req, res) => {
+  const { user_id, result, score,course ,total_questions, correct_questions, quiz_type } = req.body;
+// console.log(user_id, result, score, total_questions, correct_questions, quiz_type);
+
+  // Validate request payload
+  if (!user_id || !result || score === undefined || !total_questions || !correct_questions || !quiz_type) {
+    return res.json({ message: "All fields are required" });
+  }
+
+  const query = `
+    INSERT INTO sample_quiz_attempt (user_id, result, score, totalquestion, correctquestion, quiz_type, courseid)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+  `;
+
+  db.query(
+    query,
+    [user_id, JSON.stringify(result), score, total_questions, correct_questions, quiz_type, course],
+    (error, results) => {
+      if (error) {
+        console.error("Error creating quiz attempt:", error);
+        return res.json({ message: "Database error", error });
+      }
+
+      res.json({
+        message: "Quiz attempt created successfully",
+        data: {
+          id: results.insertId,
+          user_id,
+          result,
+          score,
+          total_questions,
+          correct_questions,
+          quiz_type,
+        },
+      });
+    }
+  );
+};
+
+// Get quiz attempts by user_id
+export const getQuizAttemptsByUserId = (req, res) => {
+  const { user_id, courseid, quiz_type } = req.params;
+
+  // Validate required parameters
+  if (!user_id || !courseid || !quiz_type) {
+    return res.json({ message: "User ID, course ID, and quiz type are required" });
+  }
+
+  // Query to fetch quiz attempts based on user_id, courseid, and quiz_type
+  const query = `
+    SELECT * 
+    FROM sample_quiz_attempt
+    WHERE user_id = ? AND courseid = ? AND quiz_type = ?
+    ORDER BY timestamp DESC
+  `;
+
+  db.query(query, [user_id, courseid, quiz_type], (error, results) => {
+    if (error) {
+      console.error("Error fetching quiz attempts:", error);
+      return res.json({ message: "Database error", error });
+    }
+
+    if (results.length === 0) {
+      return res.json({ message: "No quiz attempts found for the specified criteria" });
+    }
+
+    res.json({ message: "Quiz attempts retrieved successfully", data: results });
+  });
+};
+
+
+// Get quiz attempts by quiz_type
+export const getQuizAttemptsByQuizType = (req, res) => {
+  const { quiz_type } = req.params;
+
+  if (!quiz_type) {
+    return res.status(400).json({ message: "Quiz type is required" });
+  }
+
+  const query = `
+    SELECT * 
+    FROM sample_quiz_attempt
+    WHERE quiz_type = ?
+    ORDER BY timestamp DESC
+  `;
+
+  db.query(query, [quiz_type], (error, results) => {
+    if (error) {
+      console.error("Error fetching quiz attempts:", error);
+      return res.status(500).json({ message: "Database error", error });
+    }
+
+    res.json({ message: "Quiz attempts retrieved successfully", data: results });
+  });
+};
+
+
+

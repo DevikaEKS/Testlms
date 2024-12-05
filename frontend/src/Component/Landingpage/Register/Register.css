@@ -5,11 +5,13 @@
   /* align-items: center; */
   min-height: 100vh;
   padding: 0px 80px !important;
+  background-color: transparent !important;
 }
 
 .loginbg {
-  background-image: url("../../../Asset/loginbg.jpg");
+  background-image: url("../Asset/loginbg.png");
   height: 100% !important;
+  background-size: cover;
 }
 
 .register-card {
@@ -25,6 +27,7 @@
 .login-form {
   flex: 1;
   padding: 20px;
+  background-color: transparent !important;
 }
 .login-form h2 {
   margin-bottom: 20px;
@@ -73,7 +76,10 @@
   margin-top: 20px;
   text-align: center;
 }
-
+.register-form1{
+  background: transparent !important;
+  border: 0px !important;
+}
 .brd {
   border: 1px solid #ccc;
   padding: 10px;
@@ -131,6 +137,15 @@ select {
   box-sizing: border-box; 
 }
 
+.emailfrm{
+  background-color: #fff !important;
+}
+
+select::placeholder {
+  color: grey;
+  font-style: italic;
+}
+
 .form-control:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
@@ -153,6 +168,7 @@ select:focus {
   .google-text {
     font-size: 14px; /* Adjust text size for smaller screens */
   }
+  
   .RegisterApp {
     display: flex;
     flex-direction: column;

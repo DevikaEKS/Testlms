@@ -197,7 +197,7 @@ function MessageHistory() {
 
         {view === "history" && (
           <div className="history-table">
-            <table className="table table-striped">
+            <table className="table1 table-striped">
               <thead>
                 <tr>
                   <th>S.No</th>

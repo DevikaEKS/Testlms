@@ -1,23 +1,23 @@
 body {
     font-family: 'Montserrat', sans-serif !important;
 }
-table{
+.responsive-table table{
     border: none;
 }
-tr th {
+.responsive-table tr th {
     background-color: #291571;
     color: #fff;
     font-size: 24px;
     font-weight: 500;
-    border-top: none !important;
-    border-bottom: none !important;
+    border-top: none ;
+    border-bottom: none ;
 }
 
-tr td{
+.responsive-table tr td{
     border-top: none !important;
 }
 
-tbody tr {
+.responsive-table tbody tr {
     background-color: #291571;
     color: #291571;
     font-size: 16px;

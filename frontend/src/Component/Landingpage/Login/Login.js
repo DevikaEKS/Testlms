@@ -6,7 +6,9 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-
+import logim from "../Asset/usericon.png";
+import google1 from "../Asset/googlepic.png";
+import linkedin1 from "../Asset/lnk.png";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -70,9 +72,11 @@ function Login() {
             if (role_id === 4) {
               if(certificate_id == 2){
               navigate(`/banner/${user_id}`);
+              // navigate(`/terms`);
               }
               else if(certificate_id == 1){
                 navigate(`/banner/${user_id}`);
+                // navigate(`/terms`);
               }
             } else if (role_id === 5) {
               navigate(`/admindashboard/${company_id}/dashboard`);
@@ -94,6 +98,81 @@ function Login() {
     }
   };
 
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  
+  //   if (!validateInput()) return;
+  
+  //   const loginData = { email: username, password };
+  
+  //   try {
+  //     setIsLoading(true); // Start loading
+  //     await axios
+  //       .post(`${process.env.REACT_APP_API_URL}auth/login`, loginData, {
+  //         withCredentials: true,
+  //       })
+  //       .then((res) => {
+  //         if (res.data.message === "Invalid email or password") {
+  //           toast.error("Invalid Email or password");
+  //         } else if (res.data.message === "login success") {
+  //           const { user, token } = res.data;
+  //           const { role_id, user_id, company_id, email, certificate_id } = user;
+  
+  //           // First time login logic
+  //           if (localStorage.getItem("hasLoggedIn") === null) {
+  //             // Mark as logged in for the first time
+  //             localStorage.setItem("hasLoggedIn", "true");
+  
+  //             // Navigate based on certificate_id
+  //             if (certificate_id === 2) {
+  //               navigate("/terms");
+  //             }
+  //           } else {
+  //             // Subsequent logins
+  //             if (certificate_id === 2) {
+  //               // navigate(`/banner/${user_id}`);
+  //               navigate("/terms");
+  //             } else if (certificate_id === 1) {
+  //               navigate(`/banner/${user_id}`);
+  //             }
+  //           }
+  
+  //           // Other role-based navigation (you can keep as is)
+  //           if (role_id === 5) {
+  //             navigate(`/admindashboard/${company_id}/dashboard`);
+  //           } else if (role_id === 2) {
+  //             navigate(`/instructordashboard/${user_id}/courselist`);
+  //           } else if (email === "admin@gmail.com") {
+  //             navigate(`/superadmin/${user_id}/dashboard`);
+  //           }
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   } catch (err) {
+  //     console.error(err);
+  //     toast.error("Invalid email or password");
+  //   } finally {
+  //     setIsLoading(false); 
+  //   }
+  // };
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const handleRegisterClick = () => {
     setShowRegisterModal(true); // Show the modal
   };
@@ -111,19 +190,22 @@ function Login() {
   };
 
   return (
-    <div className="container-fluid d-flex justify-content-center align-items-center vh-100 loginbg">
-      <div className="d-flex flex-column justify-content-center align-items-center">
-        <div className="LoginApp card">
+    <div className="container-fluid d-flex justify-content-end align-items-end vh-100 loginbg ">
+      <div className="row d-flex flex-column justify-content-end align-items-end me-0 me-md-5 pe-0 pe-md-5 ">
+        <div className="col-sm-12 LoginApp card">
           <ToastContainer />
           <div className="px-4">
             <div className="login-form">
-              <h1 className="text-center">Sign In</h1>
+            <div className="text-center">
+      <img src={logim} alt="login" style={{height:"50px",width:"50px"}}/>
+      <h3 className="text-center signuptxt">Log In</h3>
+      </div>
               {/* <p className="logpara text-center">How can we help you today?</p> */}
               <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label htmlFor="username" className="text-start">
+                <div className="form-group py-3" >
+                  {/* <label htmlFor="username" className="text-start text-light">
                     Email
-                  </label>
+                  </label> */}
                   <input
                     type="text"
                     id="username"
@@ -131,23 +213,22 @@ function Login() {
                     placeholder="Enter your email"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className={`${usernameError ? "error-input" : ""}`}
-                  />
+                    className={`${usernameError ? "error-input" : ""}`}/>
                   {usernameError && (
                     <div className="error-text text-start">{usernameError}</div>
                   )}
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="password" className="text-start">
+                  {/* <label htmlFor="password" className="text-start">
                     Password
-                  </label>
+                  </label> */}
                   <div style={{ position: "relative", width: "100%" }}>
                     <input
                       type={showPassword ? "text" : "password"}
                       id="password"
                       name="password"
-                      placeholder="Enter a strong password"
+                      placeholder="Enter your password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       className={`form-control ${
@@ -166,35 +247,47 @@ function Login() {
                         transform: "translateY(-50%)",
                         cursor: "pointer",
                         color: "#555",
-                      }}
-                    >
+                      }} >
                       {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
                     </span>
                   </div>
                   {passwordError && (
                     <div className="error-text text-start">{passwordError}</div>
                   )}
-                  <div className="d-flex justify-content-between mt-1">
+                  <div className="d-flex justify-content-end mt-1">
                     <a href="/forgot_password" className="forget-password-link">
                       Forget Password?
                     </a>
                   </div>
                 </div>
-                <div className="form-group button-container">
+             
                   <button
                     type="submit"
-                    className="rounded-3 subbtn1"
-                    disabled={isLoading}
-                  >
+                    className="rounded-5 subbtn1 w-100 my-2"
+                    disabled={isLoading}>
                     {isLoading ? "Logging in..." : "Sign In"}
                   </button>
-                </div>
-                <p className="text-center">
+
+<div class="line-with-text">
+  <span>or continue with</span>
+</div>
+
+
+<div className="d-flex justify-content-evenly py-2">
+
+<div className="bg-light p-2 rounded-5">
+<img src={google1} alt="Google" style={{height:"20px"}}/>
+</div>
+<div className="bg-light p-2 rounded-5">
+<img src={linkedin1} alt="LinkedIn" style={{height:"20px"}}/>
+</div>
+
+</div>
+                <p className="text-center noaccounttext">
                   Don't have an account?{" "}
                   <span
-                    className="register-link fw-bold text-danger"
-                    onClick={handleRegisterClick}
-                  >
+                    className="register-link fw-bold "
+                    onClick={handleRegisterClick}>
                     Register
                   </span>
                 </p>
@@ -207,17 +300,17 @@ function Login() {
       {/* Modal for Register Selection */}
       <Modal show={showRegisterModal} onHide={handleCloseModal} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Select Account Type</Modal.Title>
+          <Modal.Title style={{color:"#291571"}}>Select Account Type</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Please select the type of account you want to create:</p>
+          <p style={{color:"#291571"}}>Please select the type of account you want to create:</p>
           <div className="d-flex justify-content-around">
-            <Button variant="primary" onClick={handleIndividualLogin}>
+            <button className="subbtn1 rounded-3" onClick={handleIndividualLogin}>
               Individual
-            </Button>
-            <Button variant="danger" onClick={handleBusinessLogin}>
+            </button>
+            <button className="subbtn1 rounded-3" onClick={handleBusinessLogin}>
               Business
-            </Button>
+            </button>
           </div>
         </Modal.Body>
       </Modal>

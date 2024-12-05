@@ -1,7 +1,11 @@
 .bgfullpath {
     height: 100vh;
   }
-  
+  .headinginstructor{
+    font-size: 40px;
+    font-weight: 600;
+    color: #291571;
+  }
   option {
     border: none !important;
   }
@@ -169,5 +173,9 @@
     background-color: #f8d7da; /* Light red background for inactive users */
   }
   
-  /* Additional styles for other elements remain the same */
+  .headinginstructor{
+    font-size: 40px !important;
+    font-weight: 600;
+    color: #291571 !important;
+  }
   

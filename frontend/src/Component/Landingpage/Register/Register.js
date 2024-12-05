@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Country, State, City } from "country-state-city";
 import axios from "axios";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-
+import logim from "../Asset/usericon.png";
 function Registerpage() {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
@@ -27,7 +27,6 @@ function Registerpage() {
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState("");
   const [category, setCategory] = useState("");
-
   const [categories, setCategories] = useState([]); // Store the categories from API
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -183,20 +182,23 @@ function Registerpage() {
   };
 
   return (
-    <div className="container-fluid d-flex flex-column justify-content-center align-items-center loginbg h-100">
+    <div className="container-fluid d-flex flex-column justify-content-end align-items-end loginbg h-100">
       <div className="row p-0 m-0">
         <div className="RegisterApp p-0">
           <ToastContainer />
-          <div className="card p-2">
+          <div className="card p-2 register-form1">
             <div className="register-form p-4">
-              <h1 className="text-center p-1">Sign Up</h1>
+              <div className="text-center">
+              <img src={logim} alt="login" style={{height:"50px",width:"50px"}}/>
+              <h1 className="text-center p-1 signuptxt">Sign Up</h1>
+              </div>
               <form onSubmit={handleSubmit}>
                 <div className="row">
                   <div className="col-sm-12 col-md-6">
                     <div className="form-group">
-                      <label htmlFor="fullname" className="text-start">
+                      {/* <label htmlFor="fullname" className="text-start">
                         Full Name
-                      </label>
+                      </label> */}
                       <input
                         type="text"
                         id="fullname"
@@ -214,9 +216,9 @@ function Registerpage() {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="email" className="text-start">
+                      {/* <label htmlFor="email" className="text-start">
                         Email
-                      </label>
+                      </label> */}
                       <input
                         type="text"
                         id="email"
@@ -234,9 +236,9 @@ function Registerpage() {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="phone" className="text-start">
+                      {/* <label htmlFor="phone" className="text-start">
                         Phone Number
-                      </label>
+                      </label> */}
                       <input
                         type="text"
                         id="phone"
@@ -254,9 +256,9 @@ function Registerpage() {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="qualification" className="text-start">
+                      {/* <label htmlFor="qualification" className="text-start">
                         Qualification
-                      </label>
+                      </label> */}
                       <input
                         type="text"
                         id="qualification"
@@ -277,9 +279,9 @@ function Registerpage() {
 
                     {/* Job Status Dropdown */}
                     <div className="form-group">
-                      <label htmlFor="jobStatus" className="text-start">
+                      {/* <label htmlFor="jobStatus" className="text-start">
                         Profession
-                      </label>
+                      </label> */}
                       <select
                         id="jobStatus"
                         name="jobStatus"
@@ -296,9 +298,9 @@ function Registerpage() {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="category" className="text-start">
+                      {/* <label htmlFor="category" className="text-start">
                         Category
-                      </label>
+                      </label> */}
                       <select
                         id="category"
                         name="category"
@@ -321,9 +323,9 @@ function Registerpage() {
                     {/* Show input field if "Other" is selected */}
                     {jobStatus === "Other" && (
                       <div className="form-group">
-                        <label htmlFor="otherProfession" className="text-start">
+                        {/* <label htmlFor="otherProfession" className="text-start">
                           Specify Your Profession
-                        </label>
+                        </label> */}
                         <input
                           type="text"
                           id="otherProfession"
@@ -345,7 +347,7 @@ function Registerpage() {
                   </div>
                   <div className="col-sm-12 col-md-6">
                     <div className="form-group">
-                      <label className="text-start">Select Country</label>
+                      {/* <label className="text-start">Select Country</label> */}
                       <select
                         className="form-control"
                         value={selectedCountry}
@@ -362,16 +364,16 @@ function Registerpage() {
 
                     {/* State Dropdown */}
                     <div className="form-group">
-                      <label className="text-start">Select State</label>
+                      {/* <label className="text-start">Select State</label> */}
                       <select
-                        className="form-control"
+                        className="form-control bg-light"
                         value={selectedState}
                         onChange={handleStateChange}
                         disabled={!states.length}
                       >
                         <option value="">Select a State</option>
                         {states.map((state) => (
-                          <option key={state.isoCode} value={state.isoCode}>
+                          <option key={state.isoCode} value={state.isoCode} className="bg-light">
                             {state.name}
                           </option>
                         ))}
@@ -380,16 +382,16 @@ function Registerpage() {
 
                     {/* City Dropdown */}
                     <div className="form-group">
-                      <label className="text-start">Select City</label>
+                      {/* <label className="text-start">Select City</label> */}
                       <select
-                        className="form-control form-element"
+                        className="form-control form-element bg-light"
                         value={selectedCity}
                         onChange={(e) => setSelectedCity(e.target.value)}
                         disabled={!cities.length}
                       >
                         <option value="">Select a City</option>
                         {cities.map((city) => (
-                          <option key={city.name} value={city.name}>
+                          <option key={city.name} value={city.name} className="bg-light">
                             {city.name}
                           </option>
                         ))}
@@ -397,9 +399,9 @@ function Registerpage() {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="password" className="text-start">
+                      {/* <label htmlFor="password" className="text-start">
                         Password
-                      </label>
+                      </label> */}
                       <div style={{ position: "relative", width: "100%" }}>
                         <input
                           type={showPassword ? "text" : "password"}
@@ -441,9 +443,9 @@ function Registerpage() {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="confirmPassword" className="text-start">
+                      {/* <label htmlFor="confirmPassword" className="text-start">
                         Confirm Password
-                      </label>
+                      </label> */}
                       <div style={{ position: "relative", width: "100%" }}>
                         <input
                           type={showConfirmPassword ? "text" : "password"}
@@ -481,27 +483,28 @@ function Registerpage() {
                         </div>
                       )}
                     </div>
-                  </div>
-                </div>
-                <div className="d-flex justify-content-center">
+
+
+                    <div className="d-flex justify-content-center">
                   <button
                     type="submit"
-                    className="rounded-3 subbtn1"
+                    className="rounded-5 subbtn1 w-100"
                     disabled={isLoading}
                   >
-                    {isLoading ? "Registering..." : "Register"}
+                    {isLoading ? "Registering..." : "Sign Up"}
                   </button>
                 </div>
+                  </div>       
+                </div>
+               
               </form>
 
               <div className="mt-3 text-center">
                 <p className="logpara">
                   Already have an account?{" "}
-                  <Link
-                    to="/login"
+                  <Link to="/login"
                     style={{ textDecoration: "none", fontWeight: "600" }}
-                    className="register-link text-danger"
-                  >
+                    className="register-link">
                     Login
                   </Link>
                 </p>

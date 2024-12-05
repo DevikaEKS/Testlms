@@ -54,17 +54,17 @@ function Enrolled() {
   const [examnames, setExamnames] = useState([]); 
   const [examdata, setExamData] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}course/getallcourse`)
-      .then((res) => {
-        console.log(res.data);
-        setExamData(res.data); // Save the fetched courses into the state
-      })
-      .catch((err) => {
-        console.log("Error fetching courses:", err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_API_URL}course/getallcourse`)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setExamData(res.data); // Save the fetched courses into the state
+  //     })
+  //     .catch((err) => {
+  //       console.log("Error fetching courses:", err);
+  //     });
+  // }, []);
 
   return (
     <div className="bannerpage">
@@ -77,6 +77,7 @@ function Enrolled() {
               <div className="exampart1 d-flex justify-content-center align-items-center">
                 {/* If you have an image for the course, use it here */}
                 <img src={e.course_image || examimg} alt={e.coursename} className="img-fluid" />
+                <p>{e.certificate_id}</p>
               </div>
               </div>
               </Link>

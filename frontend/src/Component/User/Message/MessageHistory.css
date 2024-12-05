@@ -91,19 +91,19 @@
   width: 100%;
 }
 
-.table {
+.table1 {
   width: 100%;
   margin-bottom: 0;
   border-collapse: collapse;
 }
 
-.table th,
-.table td {
+.table1 th,
+.table1 td {
   padding: 12px 15px;
   border: 1px solid #ddd;
 }
 
-.table thead {
+.table1 thead {
   background-color: #291571;
   color: white;
 }

@@ -6,7 +6,7 @@ function StudentDashboard() {
     const { user_id} = useParams();
   const [selectedContent, setSelectedContent] = useState('pastPaper');
 
-  // Table data for each content type
+
   const tableData = {
     pastPaper: [
       { sno: 1, year: '2023', month: 'January', score: '-', examName: 'SBI BPO' },
@@ -40,8 +40,7 @@ function StudentDashboard() {
             data-bs-target="#navbarNav"
             aria-controls="navbarNav"
             aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+            aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse " id="navbarNav">
@@ -104,7 +103,7 @@ function StudentDashboard() {
             <table className='table studtable'>
               <thead>
                 <tr>
-                  <th >S.NO</th>
+                  <th>S.NO</th>
                   <th>Year</th>
                   <th>Month</th>
                   <th>Score</th>

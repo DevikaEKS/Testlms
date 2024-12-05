@@ -151,7 +151,7 @@ function AddCourse() {
 
           <div className="form-group">
             <div className="form-group-inner">
-              <label htmlFor="courseCategory" className="labelcourse">Exam Category</label>
+              <label htmlFor="courseCategory" className="labelcourse">Subcategory</label>
               <select
                 id="courseCategory"
                 name="courseCategory"
@@ -159,7 +159,7 @@ function AddCourse() {
                 onChange={(e) => setSelectedCategoryId(e.target.value)} // Set single ID
                 value={selectedCategoryId || ""}
               >
-                <option value="">Select the Exam category</option>
+                <option value="">Select the Exam subcategory</option>
                 {categories.map((category, i) => (
                   <option key={i} value={category.id}>
                     {category.name}
@@ -178,7 +178,7 @@ function AddCourse() {
 
           <div className="form-group">
             <div className="form-group-inner">
-              <label htmlFor="courseStartDate" className="labelcourse">Exam Start Date</label>
+              <label htmlFor="courseStartDate" className="labelcourse">Start Date</label>
               <input
                 id="courseStartDate"
                 name="courseStartDate"
@@ -189,7 +189,7 @@ function AddCourse() {
           </div>
           <div className="form-group">
             <div className="form-group-inner">
-              <label htmlFor="courseEndDate" className="labelcourse">Exam End Date</label>
+              <label htmlFor="courseEndDate" className="labelcourse">End Date</label>
               <input
                 id="courseEndDate"
                 name="courseEndDate"
@@ -200,20 +200,89 @@ function AddCourse() {
           </div>
           <div className="form-group">
             <div className="form-group-inner">
-              <label htmlFor="courseImage" className="labelcourse">Exam Image</label>
+              <label htmlFor="courseImage" className="labelcourse">Image</label>
               <input
                 id="courseImage"
                 name="courseImage"
                 type="file"
                 className="form-control fc1"
-                accept=".jpg, .jpeg"
+                // accept=".jpg, .jpeg"
+                accept="image/*"
                 required
               />
             </div>
-          </div>
+            </div>
+            {/* //extra fields */}
+
+            {/* <div className="form-group">
+            <div className="form-group-inner">
+              <label htmlFor="courseImage" className="labelcourse">Exam frequency</label>
+              <input
+                id="exam freq"
+                name="eamfreq"
+                type="text"
+                className="form-control fc1"
+               
+                required
+              />
+            </div>
+
+            </div>
+
+
+            <div className="form-group">
+            <div className="form-group-inner">
+              <label htmlFor="courseImage" className="labelcourse">Exam Level</label>
+              <input
+                id="examlevel"
+                name="examlevel"
+                type="text"
+                className="form-control fc1"
+                
+                required
+              />
+            </div>
+
+            </div>
+
+
+            <div className="form-group">
+            <div className="form-group-inner">
+              <label htmlFor="courseImage" className="labelcourse">Exam Date</label>
+              <input
+                id="examlevel"
+                name="examlevel"
+                type="text"
+                className="form-control fc1"
+                
+                required
+              />
+            </div>
+
+            </div> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {/* //extra fields */}
+       
           <div className="form-group">
             <div className="form-group-inner">
-              <label htmlFor="courseDescription" className="labelcourse">Exam Description</label>
+              <label htmlFor="courseDescription" className="labelcourse">Description</label>
               <textarea
                 id="courseDescription"
                 name="courseDescription"

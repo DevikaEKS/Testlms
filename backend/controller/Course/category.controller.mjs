@@ -1,6 +1,5 @@
 import db from "../../config/db.config.mjs";
 
-
 export const getCertificateTypes = (req, res) => {
   const query = 'SELECT * FROM type_of_certificate';
 
